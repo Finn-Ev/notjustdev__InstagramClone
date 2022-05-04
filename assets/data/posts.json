@@ -14,7 +14,7 @@
     "comments": [
       {
         "id": "1",
-        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. H",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. H",
         "user": {
           "id": "u1",
           "username": "vadimnotjustdev"
@@ -22,7 +22,7 @@
       },
       {
         "id": "2",
-        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. H",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. H",
         "user": {
           "id": "u1",
           "username": "vadimnotjustdev"
@@ -49,7 +49,7 @@
     "comments": [
       {
         "id": "1",
-        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. H",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. H",
         "user": {
           "id": "u1",
           "username": "vadimnotjustdev"
@@ -57,7 +57,7 @@
       },
       {
         "id": "2",
-        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. H",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. H",
         "user": {
           "id": "u1",
           "username": "vadimnotjustdev"
@@ -80,7 +80,7 @@
     "comments": [
       {
         "id": "1",
-        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. H",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. H",
         "user": {
           "id": "u1",
           "username": "vadimnotjustdev"
@@ -88,7 +88,7 @@
       },
       {
         "id": "2",
-        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. H",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. H",
         "user": {
           "id": "u1",
           "username": "vadimnotjustdev"
@@ -111,7 +111,7 @@
     "comments": [
       {
         "id": "1",
-        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. H",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. H",
         "user": {
           "id": "u1",
           "username": "vadimnotjustdev"
@@ -119,7 +119,7 @@
       },
       {
         "id": "2",
-        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. H",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. H",
         "user": {
           "id": "u1",
           "username": "vadimnotjustdev"
@@ -142,7 +142,7 @@
     "comments": [
       {
         "id": "1",
-        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. H",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. H",
         "user": {
           "id": "u1",
           "username": "vadimnotjustdev"
@@ -150,7 +150,7 @@
       },
       {
         "id": "2",
-        "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. H",
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. H",
         "user": {
           "id": "u1",
           "username": "vadimnotjustdev"

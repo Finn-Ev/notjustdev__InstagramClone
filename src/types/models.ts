@@ -23,6 +23,6 @@ export interface IUser {
 
 export interface IComment {
   id: string;
-  comment: string;
+  text: string;
   user: IUser;
 }

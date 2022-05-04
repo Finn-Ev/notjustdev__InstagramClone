@@ -3,7 +3,6 @@ import { Pressable } from 'react-native';
 interface IDoublePressable {
   onDoublePress: () => void;
   interval?: number;
-  children: React.ReactNode;
 }
 
 const DoublePressable: React.FC<IDoublePressable> = ({

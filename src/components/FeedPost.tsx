@@ -14,9 +14,10 @@ import VideoPlayer from './VideoPlayer';
 
 interface IFeedPost {
   post: IPost;
+  isVisible: boolean;
 }
 
-const FeedPost: React.FC<IFeedPost> = ({ post }) => {
+const FeedPost: React.FC<IFeedPost> = ({ post, isVisible }) => {
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
 
@@ -38,9 +39,9 @@ const FeedPost: React.FC<IFeedPost> = ({ post }) => {
       );
     } else if (post.video) {
       return (
-        // <DoublePressable onDoublePress={() => setIsLiked(true)}>
-        <VideoPlayer uri={post.video} />
-        // </DoublePressable>
+        <DoublePressable onDoublePress={() => setIsLiked(true)}>
+          <VideoPlayer isVisible={isVisible} uri={post.video} />
+        </DoublePressable>
       );
     }
   };
@@ -122,7 +123,7 @@ const FeedPost: React.FC<IFeedPost> = ({ post }) => {
           View all {post.nofComments} comments
         </Text>
         {post.comments.map(comment => (
-          <Comment key={comment.id} commentData={comment} />
+          <Comment key={comment.id} comment={comment} />
         ))}
 
         {/* Posted date */}

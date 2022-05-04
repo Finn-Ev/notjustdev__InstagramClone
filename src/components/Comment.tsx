@@ -1,22 +1,54 @@
-import { Text, View } from 'react-native';
+import { Image, Pressable, Text, View } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { StyleSheet } from 'react-native';
 import colors from '../theme/colors';
 import fonts from '../theme/fonts';
 import { IComment } from '../types/models';
+import { useState } from 'react';
 
 interface CommentProps {
-  commentData: IComment;
+  comment: IComment;
+  displayedInCommentScreen?: boolean;
 }
 
-const Comment: React.FC<CommentProps> = ({ commentData }) => {
+const Comment: React.FC<CommentProps> = ({
+  comment,
+  displayedInCommentScreen = false,
+}) => {
+  const [isLiked, setIsLiked] = useState(false);
+
   return (
     <View style={styles.comment}>
-      <Text style={{ ...styles.text, flex: 1, marginRight: 10 }}>
-        <Text style={styles.bold}>{commentData.user.username}</Text>{' '}
-        {commentData.comment}
-      </Text>
-      <AntDesign name={'hearto'} size={14} color={colors.black} />
+      {displayedInCommentScreen && (
+        <Image source={{ uri: comment.user.image }} style={styles.avatar} />
+      )}
+
+      <View style={styles.commentContent}>
+        <Text
+          style={{
+            ...styles.text,
+            marginHorizontal: displayedInCommentScreen ? 10 : 0,
+          }}
+        >
+          <Text style={styles.bold}>{comment.user.username}</Text>{' '}
+          {comment.text}
+        </Text>
+        {displayedInCommentScreen && (
+          <View style={styles.footer}>
+            <Text style={styles.footerText}>2d</Text>
+            <Text style={styles.footerText}>5 likes</Text>
+            <Text style={styles.footerText}>Reply</Text>
+          </View>
+        )}
+      </View>
+
+      <Pressable hitSlop={10} onPress={() => setIsLiked(v => !v)}>
+        <AntDesign
+          name={isLiked ? 'heart' : 'hearto'}
+          size={14}
+          color={isLiked ? colors.accent : colors.black}
+        />
+      </Pressable>
     </View>
   );
 };
@@ -26,9 +58,28 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  commentContent: {
+    flex: 1,
+  },
   text: {
     color: colors.black,
     lineHeight: 18,
+    flex: 1,
+    marginRight: 10,
+  },
+  footer: {
+    flexDirection: 'row',
+    marginHorizontal: 10,
+    marginBottom: 10,
+  },
+  footerText: {
+    marginRight: 7.5,
+    color: colors.lightgrey,
+  },
+  avatar: {
+    width: 35,
+    aspectRatio: 1,
+    borderRadius: 20,
   },
   bold: {
     fontWeight: fonts.weight.bold,

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import {
   Image,
-  KeyboardAvoidingView,
   Pressable,
   StyleSheet,
   Text,
@@ -10,14 +9,11 @@ import {
 } from 'react-native';
 import colors from '../theme/colors';
 import fonts from '../theme/fonts';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface IInput {}
 
 const CommentInput: React.FC<IInput> = ({}) => {
   const [text, setText] = useState('');
-
-  const safeAreaInsets = useSafeAreaInsets();
 
   const onPost = () => {
     console.log(text);
@@ -25,7 +21,7 @@ const CommentInput: React.FC<IInput> = ({}) => {
   };
 
   return (
-    <View style={[styles.container, { paddingBottom: safeAreaInsets.bottom }]}>
+    <View style={styles.container}>
       <Image
         style={styles.avatar}
         source={{
@@ -39,11 +35,7 @@ const CommentInput: React.FC<IInput> = ({}) => {
         placeholder="Write your comment..."
         multiline
       />
-      <Pressable
-        hitSlop={2}
-        onPress={onPost}
-        style={[styles.button, { bottom: safeAreaInsets.bottom + 12 }]}
-      >
+      <Pressable hitSlop={10} onPress={onPost} style={styles.button}>
         <Text style={styles.buttonText}>POST</Text>
       </Pressable>
     </View>
@@ -77,7 +69,7 @@ const styles = StyleSheet.create({
   button: {
     position: 'absolute',
     right: 15,
-    // alignSelf: 'center',
+    alignSelf: 'center',
   },
   buttonText: {
     fontSize: fonts.size.s,

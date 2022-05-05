@@ -1,20 +1,16 @@
-import {
-  FlatList,
-  KeyboardAvoidingView,
-  SafeAreaView,
-  Text,
-  View,
-} from 'react-native';
+import { FlatList, KeyboardAvoidingView, Platform, View } from 'react-native';
 import comments from '../../assets/data/comments.json';
 import Comment from '../components/Comment';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import CommentInput from '../components/CommentInput';
 
 interface IComments {}
 
 const Comments: React.FC<IComments> = ({}) => {
   return (
-    <View style={{ flex: 1 }}>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
       <FlatList
         style={{ padding: 10 }}
         data={comments}
@@ -23,7 +19,7 @@ const Comments: React.FC<IComments> = ({}) => {
         )}
       />
       <CommentInput />
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 

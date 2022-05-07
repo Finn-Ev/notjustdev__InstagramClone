@@ -7,8 +7,8 @@ import {
   View,
   ViewToken,
 } from 'react-native';
-import colors from '../theme/colors';
-import DoublePressable from './util/DoublePressable';
+import colors from '../../theme/colors';
+import DoublePressable from './DoublePressable';
 
 interface ICarousel {
   images: string[];

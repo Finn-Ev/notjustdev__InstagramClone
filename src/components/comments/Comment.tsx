@@ -1,9 +1,9 @@
 import { Image, Pressable, Text, View } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { StyleSheet } from 'react-native';
-import colors from '../theme/colors';
-import fonts from '../theme/fonts';
-import { IComment } from '../types/models';
+import colors from '../../theme/colors';
+import fonts from '../../theme/fonts';
+import { IComment } from '../../types/models';
 import { useState } from 'react';
 
 interface CommentProps {

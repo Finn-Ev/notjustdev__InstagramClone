@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Video } from 'expo-av';
 import { useRef, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
-import colors from '../theme/colors';
+import colors from '../../theme/colors';
 
 interface IVideoPlayer {
   uri: string;
@@ -24,11 +24,10 @@ const VideoPlayer: React.FC<IVideoPlayer> = ({ uri, isVisible }) => {
         />
       </Pressable>
       <Video
-        // useNativeControls
         resizeMode="cover"
         isLooping
-        // shouldPlay={isVisible}
-        shouldPlay={false}
+        shouldPlay={isVisible}
+        // shouldPlay={false}
         ref={video}
         source={{ uri }}
         isMuted={isMuted}

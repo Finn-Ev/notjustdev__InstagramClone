@@ -1,11 +1,11 @@
 import { FlatList, KeyboardAvoidingView, Platform, View } from 'react-native';
 import comments from '../../assets/data/comments.json';
-import Comment from '../components/Comment';
-import CommentInput from '../components/CommentInput';
+import Comment from '../components/comments/Comment';
+import CommentInput from '../components/comments/CommentInput';
 
 interface IComments {}
 
-const Comments: React.FC<IComments> = ({}) => {
+const CommentsScreen: React.FC<IComments> = ({}) => {
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -23,4 +23,4 @@ const Comments: React.FC<IComments> = ({}) => {
   );
 };
 
-export default Comments;
+export default CommentsScreen;

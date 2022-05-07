@@ -1,16 +1,16 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import colors from '../theme/colors';
+import colors from '../../theme/colors';
 import Feather from '@expo/vector-icons/Feather';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Entypo from '@expo/vector-icons/Entypo';
-import Comment from './Comment';
+import Comment from '../comments/Comment';
 import AntDesign from '@expo/vector-icons/AntDesign';
-import { IPost } from '../types/models';
+import { IPost } from '../../types/models';
 import { useState } from 'react';
-import DoublePressable from './util/DoublePressable';
-import fonts from '../theme/fonts';
-import Carousel from './Carousel';
-import VideoPlayer from './VideoPlayer';
+import DoublePressable from '../shared/DoublePressable';
+import fonts from '../../theme/fonts';
+import Carousel from '../shared/Carousel';
+import VideoPlayer from '../shared/VideoPlayer';
 
 interface IFeedPost {
   post: IPost;

@@ -1,14 +1,14 @@
-import { StyleSheet } from 'react-native';
-import { useRef, useState } from 'react';
+import { StyleSheet } from "react-native";
+import { useRef, useState } from "react";
 import {
   FlatList,
   Image,
   useWindowDimensions,
   View,
   ViewToken,
-} from 'react-native';
-import colors from '../../theme/colors';
-import DoublePressable from './DoublePressable';
+} from "react-native";
+import colors from "../../theme/colors";
+import DoublePressable from "./DoublePressable";
 
 interface ICarousel {
   images: string[];
@@ -54,7 +54,7 @@ const Carousel: React.FC<ICarousel> = ({
             key={index}
             style={{
               ...styles.dot,
-              backgroundColor: activeImageIndex === index ? '#0095f6' : 'grey',
+              backgroundColor: activeImageIndex === index ? "#0095f6" : "grey",
             }}
           />
         ))}
@@ -65,11 +65,11 @@ const Carousel: React.FC<ICarousel> = ({
 
 const styles = StyleSheet.create({
   dotsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    position: 'absolute',
+    flexDirection: "row",
+    justifyContent: "center",
+    position: "absolute",
     bottom: -25,
-    width: '100%',
+    width: "100%",
   },
   dot: {
     width: 7,

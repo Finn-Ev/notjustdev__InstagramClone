@@ -29,6 +29,7 @@ const Button: React.FC<IButton> = ({
   );
 };
 
+
 const styles = StyleSheet.create({
   container: {
     borderWidth: 1,
@@ -36,6 +37,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 5,
     alignItems: 'center',
+    justifyContent: 'center',
     flex: 1,
     margin: 5,
   },

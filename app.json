@@ -16,6 +16,14 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "To select a new profile photo, you need to give us access to your camera roll."
+        }
+      ]
+    ],
     "ios": {
       "supportsTablet": true
     },

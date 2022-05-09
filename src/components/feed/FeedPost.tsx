@@ -1,16 +1,16 @@
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import colors from '../../theme/colors';
-import Feather from '@expo/vector-icons/Feather';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import Entypo from '@expo/vector-icons/Entypo';
-import Comment from '../comments/Comment';
-import AntDesign from '@expo/vector-icons/AntDesign';
-import { IPost } from '../../types/models';
-import { useState } from 'react';
-import DoublePressable from '../shared/DoublePressable';
-import fonts from '../../theme/fonts';
-import Carousel from '../shared/Carousel';
-import VideoPlayer from '../shared/VideoPlayer';
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import colors from "../../theme/colors";
+import Feather from "@expo/vector-icons/Feather";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import Entypo from "@expo/vector-icons/Entypo";
+import Comment from "../comments/Comment";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import { IPost } from "../../types/models";
+import { useState } from "react";
+import DoublePressable from "../shared/DoublePressable";
+import fonts from "../../theme/fonts";
+import Carousel from "../shared/Carousel";
+import VideoPlayer from "../shared/VideoPlayer";
 
 interface IFeedPost {
   post: IPost;
@@ -70,12 +70,12 @@ const FeedPost: React.FC<IFeedPost> = ({ post, isVisible }) => {
       {/* Footer */}
       <View style={styles.footer}>
         <View style={styles.iconContainer}>
-          <Pressable onPress={() => setIsLiked(v => !v)}>
+          <Pressable onPress={() => setIsLiked((v) => !v)}>
             <AntDesign
-              name={isLiked ? 'heart' : 'hearto'}
+              name={isLiked ? "heart" : "hearto"}
               size={24}
               style={styles.icon}
-              color={isLiked ? '#ED4956' : colors.black}
+              color={isLiked ? colors.error : colors.black}
             />
           </Pressable>
           <Ionicons
@@ -93,20 +93,20 @@ const FeedPost: React.FC<IFeedPost> = ({ post, isVisible }) => {
           <Feather
             name="bookmark"
             size={24}
-            style={{ marginLeft: 'auto' }}
+            style={{ marginLeft: "auto" }}
             color={colors.black}
           />
         </View>
 
         {/* Likes */}
         <Text style={styles.text}>
-          Liked by <Text style={styles.bold}>vadimsavin</Text> and{' '}
+          Liked by <Text style={styles.bold}>vadimsavin</Text> and{" "}
           <Text style={styles.bold}>{post.nofLikes} others</Text>
         </Text>
 
         {/* Description */}
         <Text style={styles.text} numberOfLines={isDescriptionExpanded ? 0 : 3}>
-          <Text style={styles.bold}>{post.user.username}</Text>{' '}
+          <Text style={styles.bold}>{post.user.username}</Text>{" "}
           {post.description}
         </Text>
         {!isDescriptionExpanded && (
@@ -122,9 +122,10 @@ const FeedPost: React.FC<IFeedPost> = ({ post, isVisible }) => {
         <Text style={styles.utilText}>
           View all {post.nofComments} comments
         </Text>
-        {post.comments.map(comment => (
-          <Comment key={comment.id} comment={comment} />
-        ))}
+        {post.comments &&
+          post.comments.map((comment) => (
+            <Comment key={comment.id} comment={comment} />
+          ))}
 
         {/* Posted date */}
         <Text style={styles.utilText}>{post.createdAt}</Text>
@@ -147,13 +148,13 @@ const styles = StyleSheet.create({
     fontWeight: fonts.weight.bold,
   },
   image: {
-    width: '100%',
+    width: "100%",
     aspectRatio: 1,
   },
   header: {
-    flexDirection: 'row',
+    flexDirection: "row",
     padding: 10,
-    alignItems: 'center',
+    alignItems: "center",
   },
   userAvatar: {
     width: 50,
@@ -166,14 +167,14 @@ const styles = StyleSheet.create({
     color: colors.black,
   },
   threeDots: {
-    marginLeft: 'auto',
+    marginLeft: "auto",
     marginRight: 10,
   },
   footer: {
     padding: 10,
   },
   iconContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginBottom: 5,
   },
   icon: {

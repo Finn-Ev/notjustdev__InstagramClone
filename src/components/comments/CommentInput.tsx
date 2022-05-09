@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import {
   Image,
   Pressable,
@@ -6,18 +6,18 @@ import {
   Text,
   TextInput,
   View,
-} from 'react-native';
-import colors from '../../theme/colors';
-import fonts from '../../theme/fonts';
+} from "react-native";
+import colors from "../../theme/colors";
+import fonts from "../../theme/fonts";
 
 interface IInput {}
 
 const CommentInput: React.FC<IInput> = ({}) => {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
 
   const onPost = () => {
     console.log(text);
-    setText('');
+    setText("");
   };
 
   return (
@@ -25,12 +25,12 @@ const CommentInput: React.FC<IInput> = ({}) => {
       <Image
         style={styles.avatar}
         source={{
-          uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/2.jpg',
+          uri: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/2.jpg",
         }}
       />
       <TextInput
         value={text}
-        onChangeText={val => setText(val)}
+        onChangeText={(val) => setText(val)}
         style={styles.input}
         placeholder="Write your comment..."
         multiline
@@ -44,11 +44,11 @@ const CommentInput: React.FC<IInput> = ({}) => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+    flexDirection: "row",
     padding: 5,
     borderTopWidth: 1,
     borderColor: colors.border,
-    alignItems: 'flex-end',
+    alignItems: "flex-end",
   },
   avatar: {
     height: 40,
@@ -67,9 +67,9 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   button: {
-    position: 'absolute',
+    position: "absolute",
     right: 15,
-    alignSelf: 'center',
+    alignSelf: "center",
   },
   buttonText: {
     fontSize: fonts.size.s,

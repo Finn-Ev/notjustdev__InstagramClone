@@ -1,12 +1,12 @@
-import { useRef, useState } from 'react';
-import { FlatList, View, ViewToken } from 'react-native';
-import posts from '../../assets/data/posts.json';
-import FeedPost from '../components/feed/FeedPost';
-import CommentsScreen from './Comments.screen';
+import { useRef, useState } from "react";
+import { FlatList, View, ViewToken } from "react-native";
+import posts from "../../assets/data/posts.json";
+import FeedPost from "../components/feed/FeedPost";
+import CommentsScreen from "./Comments.screen";
 
 interface IHomeScreen {}
 
-const HomeScreen: React.FC<IHomeScreen> = ({}) => {
+const FeedScreen: React.FC<IHomeScreen> = ({}) => {
   const [activePostId, setActivePostId] = useState<string | null>(null);
   const onViewableItemsChanged = useRef(
     ({ viewableItems }: { viewableItems: ViewToken[] }) => {
@@ -31,4 +31,4 @@ const HomeScreen: React.FC<IHomeScreen> = ({}) => {
   );
 };
 
-export default HomeScreen;
+export default FeedScreen;

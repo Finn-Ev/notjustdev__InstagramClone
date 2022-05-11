@@ -50,7 +50,7 @@ const PostUploadScreen: React.FC<IPostUploadScreen> = ({}) => {
 
   const toggleFlashMode = () => {
     setFlashMode((currentFlashMode) =>
-      currentFlashMode === FlashMode.off ? FlashMode.torch : FlashMode.off
+      currentFlashMode === FlashMode.off ? FlashMode.on : FlashMode.off
     );
   };
 
@@ -77,6 +77,7 @@ const PostUploadScreen: React.FC<IPostUploadScreen> = ({}) => {
         });
       } catch (e) {
         console.error(e);
+
         setIsRecording(false);
       }
     }

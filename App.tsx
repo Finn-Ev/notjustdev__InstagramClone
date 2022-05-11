@@ -1,21 +1,16 @@
 import { SafeAreaView } from "react-native";
 import CommentsScreen from "./src/screens/Comments.screen";
 import EditProfileScreen from "./src/screens/EditProfile.screen";
-import HomeScreen from "./src/screens/Home.screen";
+import FeedScreen from "./src/screens/Feed.screen";
 import Profile from "./src/screens/Profile.screen";
 import PostUploadScreen from "./src/screens/PostUpload.screen";
 import colors from "./src/theme/colors";
 
+import { NavigationContainer } from "@react-navigation/native";
+import Navigation from "./src/navigation";
+
 const App: React.FC = ({}) => {
-  return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: colors.black }}>
-      {/* <HomeScreen /> */}
-      {/* <Comments /> */}
-      {/* <Profile /> */}
-      {/*<EditProfileScreen />*/}
-      <PostUploadScreen />
-    </SafeAreaView>
-  );
+  return <Navigation />;
 };
 
 export default App;

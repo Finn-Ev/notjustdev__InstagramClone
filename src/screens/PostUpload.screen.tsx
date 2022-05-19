@@ -4,6 +4,7 @@ import {
   Text,
   Pressable,
   useWindowDimensions,
+  SafeAreaView,
 } from "react-native";
 import { Camera } from "expo-camera";
 import { useEffect, useRef, useState } from "react";
@@ -107,7 +108,7 @@ const PostUploadScreen: React.FC<IPostUploadScreen> = ({}) => {
         ref={cameraRef}
         // ratio={"4:3"}
       />
-      <View style={[styles.buttonContainer, { top: 30 }]}>
+      <View style={[styles.buttonContainer, { top: 60 }]}>
         <MaterialIcons name={"settings"} size={30} color={colors.white} />
         <Pressable onPress={toggleFlashMode} hitSlop={16}>
           <MaterialIcons

@@ -1,11 +1,14 @@
-import { StyleSheet, View, Text, Image } from 'react-native';
-import fonts from '../../theme/fonts';
-import user from '../../../assets/data/user.json';
-import Button from '../shared/Button';
+import { StyleSheet, View, Text, Image } from "react-native";
+import fonts from "../../theme/fonts";
+import user from "../../../assets/data/user.json";
+import Button from "../shared/Button";
+import { useNavigation } from "@react-navigation/native";
 
 interface IProfileHeader {}
 
 const ProfileHeader: React.FC<IProfileHeader> = ({}) => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       {/* Username */}
@@ -38,8 +41,10 @@ const ProfileHeader: React.FC<IProfileHeader> = ({}) => {
 
       {/* Buttons */}
       <View style={styles.buttonContainer}>
-        <Button onPress={() => console.log('pressed')}>Edit Profile</Button>
-        <Button onPress={() => console.log('pressed')}>Another Button</Button>
+        <Button onPress={() => navigation.navigate("EditProfile")}>
+          Edit Profile
+        </Button>
+        <Button onPress={() => console.log("pressed")}>Another Button</Button>
       </View>
     </View>
   );
@@ -56,9 +61,9 @@ const styles = StyleSheet.create({
     fontWeight: fonts.weight.bold,
   },
   headerRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   avatar: {
     width: 100,
@@ -66,7 +71,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   numberContainer: {
-    alignItems: 'center',
+    alignItems: "center",
   },
   numberText: {
     fontSize: fonts.size.md,
@@ -80,7 +85,7 @@ const styles = StyleSheet.create({
   },
   bio: {},
   buttonContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
   },
 });
 

@@ -11,6 +11,7 @@ import DoublePressable from "../shared/DoublePressable";
 import fonts from "../../theme/fonts";
 import Carousel from "../shared/Carousel";
 import VideoPlayer from "../shared/VideoPlayer";
+import { useNavigation } from "@react-navigation/native";
 
 interface IFeedPost {
   post: IPost;
@@ -20,6 +21,11 @@ interface IFeedPost {
 const FeedPost: React.FC<IFeedPost> = ({ post, isVisible }) => {
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
+  const navigation = useNavigation();
+
+  const navigateToComment = () => {
+    navigation.navigate("Comments", { postId: post.id });
+  };
 
   const getContent = () => {
     if (post.image) {
@@ -56,7 +62,14 @@ const FeedPost: React.FC<IFeedPost> = ({ post, isVisible }) => {
             uri: post.user.image,
           }}
         />
-        <Text style={styles.userName}>{post.user.username}</Text>
+        <Text
+          onPress={() =>
+            navigation.navigate("UserProfile", { user: post.user })
+          }
+          style={styles.userName}
+        >
+          {post.user.username}
+        </Text>
         <Entypo
           name="dots-three-horizontal"
           size={16}
@@ -119,7 +132,7 @@ const FeedPost: React.FC<IFeedPost> = ({ post, isVisible }) => {
         )}
 
         {/* Comments*/}
-        <Text style={styles.utilText}>
+        <Text onPress={navigateToComment} style={styles.utilText}>
           View all {post.nofComments} comments
         </Text>
         {post.comments &&

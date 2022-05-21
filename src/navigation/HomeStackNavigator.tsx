@@ -5,8 +5,9 @@ import { Image } from "react-native";
 
 // @ts-ignore
 import logo from "../../assets/logo.png";
+import { HomeStackNavigatorParamList } from "./types";
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<HomeStackNavigatorParamList>();
 
 const HomeStackNavigator = () => {
   return (

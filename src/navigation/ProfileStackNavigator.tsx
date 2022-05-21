@@ -1,13 +1,11 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import FeedScreen from "../screens/Feed.screen";
 import ProfileScreen from "../screens/Profile.screen";
-import { Image } from "react-native";
-
 // @ts-ignore
 import logo from "../../assets/logo.png";
 import EditProfileScreen from "../screens/EditProfile.screen";
+import { ProfileStackNavigatorParamList } from "./types";
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<ProfileStackNavigatorParamList>();
 
 const ProfileStackNavigator = () => {
   return (

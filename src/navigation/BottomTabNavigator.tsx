@@ -13,8 +13,11 @@ import {
 import colors from "../theme/colors";
 import HomeStackNavigator from "./HomeStackNavigator";
 import ProfileStackNavigator from "./ProfileStackNavigator";
+import { BottomTabNavigatorParamList } from "./types";
+import SearchTabNavigator from "./SearchTabNavigator";
 
-const BottomTabNavigator = createBottomTabNavigator();
+const BottomTabNavigator =
+  createBottomTabNavigator<BottomTabNavigatorParamList>();
 
 const BottomTab = () => {
   return (
@@ -36,8 +39,9 @@ const BottomTab = () => {
       />
       <BottomTabNavigator.Screen
         name="Search"
-        component={ProfileScreen}
+        component={SearchTabNavigator}
         options={{
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="search" size={size} color={color} />
           ),

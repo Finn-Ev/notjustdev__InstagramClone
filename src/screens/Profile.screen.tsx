@@ -1,17 +1,29 @@
-import { Image, SafeAreaView } from "react-native";
+import { Image, SafeAreaView, Text } from "react-native";
 import user from "../../assets/data/user.json";
 import FeedGridView from "../components/feed/FeedGridView";
 
 import ProfileHeader from "../components/profile/ProfileHeader";
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import {
+  MyProfileNavigationProp,
+  MyProfileRouteProp,
+  UserProfileNavigationProp,
+  UserProfileRouteProp,
+} from "../navigation/types";
 
 interface IProfile {}
 
 const ProfileScreen: React.FC<IProfile> = ({}) => {
-  const user_ = useRoute().params?.user;
-  console.log(user_);
+  const route = useRoute<UserProfileRouteProp | MyProfileRouteProp>();
+
+  const navigation = useNavigation<
+    UserProfileNavigationProp | MyProfileNavigationProp
+  >();
   return (
     <SafeAreaView>
+      <Text>
+        {route.name} {route.params?.userId}
+      </Text>
       <FeedGridView data={user.posts} ListHeaderComponent={ProfileHeader} />
     </SafeAreaView>
   );

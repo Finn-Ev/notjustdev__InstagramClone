@@ -12,6 +12,7 @@ import fonts from "../../theme/fonts";
 import Carousel from "../shared/Carousel";
 import VideoPlayer from "../shared/VideoPlayer";
 import { useNavigation } from "@react-navigation/native";
+import { FeedNavigationProp } from "../../navigation/types";
 
 interface IFeedPost {
   post: IPost;
@@ -21,11 +22,7 @@ interface IFeedPost {
 const FeedPost: React.FC<IFeedPost> = ({ post, isVisible }) => {
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-  const navigation = useNavigation();
-
-  const navigateToComment = () => {
-    navigation.navigate("Comments", { postId: post.id });
-  };
+  const navigation = useNavigation<FeedNavigationProp>();
 
   const getContent = () => {
     if (post.image) {
@@ -64,7 +61,7 @@ const FeedPost: React.FC<IFeedPost> = ({ post, isVisible }) => {
         />
         <Text
           onPress={() =>
-            navigation.navigate("UserProfile", { user: post.user })
+            navigation.navigate("UserProfile", { userId: post.user.id })
           }
           style={styles.userName}
         >
@@ -132,7 +129,13 @@ const FeedPost: React.FC<IFeedPost> = ({ post, isVisible }) => {
         )}
 
         {/* Comments*/}
-        <Text onPress={navigateToComment} style={styles.utilText}>
+        <Text
+          onPress={() =>
+            // @ts-ignore
+            navigation.navigate("Comments", { postId: post.id })
+          }
+          style={styles.utilText}
+        >
           View all {post.nofComments} comments
         </Text>
         {post.comments &&

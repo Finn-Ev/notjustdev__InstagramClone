@@ -3,11 +3,12 @@ import fonts from "../../theme/fonts";
 import user from "../../../assets/data/user.json";
 import Button from "../shared/Button";
 import { useNavigation } from "@react-navigation/native";
+import { ProfileNavigationProp } from "../../navigation/types";
 
 interface IProfileHeader {}
 
 const ProfileHeader: React.FC<IProfileHeader> = ({}) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<ProfileNavigationProp>();
 
   return (
     <View style={styles.container}>

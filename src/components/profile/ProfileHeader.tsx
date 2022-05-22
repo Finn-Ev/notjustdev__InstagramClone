@@ -4,6 +4,7 @@ import user from "../../../assets/data/user.json";
 import Button from "../shared/Button";
 import { useNavigation } from "@react-navigation/native";
 import { ProfileNavigationProp } from "../../navigation/types";
+import { Auth } from "aws-amplify";
 
 interface IProfileHeader {}
 
@@ -45,7 +46,7 @@ const ProfileHeader: React.FC<IProfileHeader> = ({}) => {
         <Button onPress={() => navigation.navigate("EditProfile")}>
           Edit Profile
         </Button>
-        <Button onPress={() => console.log("pressed")}>Another Button</Button>
+        <Button onPress={() => Auth.signOut()}>Sign out</Button>
       </View>
     </View>
   );

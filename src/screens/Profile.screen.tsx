@@ -21,9 +21,6 @@ const ProfileScreen: React.FC<IProfile> = ({}) => {
   >();
   return (
     <SafeAreaView>
-      <Text>
-        {route.name} {route.params?.userId}
-      </Text>
       <FeedGridView data={user.posts} ListHeaderComponent={ProfileHeader} />
     </SafeAreaView>
   );

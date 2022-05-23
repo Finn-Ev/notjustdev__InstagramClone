@@ -11,18 +11,18 @@ import {
 } from "../../types/navigation";
 import { useRoute } from "@react-navigation/native";
 import { Auth } from "aws-amplify";
+import { EMAIL_REGEX } from "../../types/regExs";
 
 type ConfirmEmailData = {
-  username: string;
+  email: string;
   code: string;
 };
 
 const ConfirmEmailScreen = () => {
   const route = useRoute<ConfirmEmailRouteProp>();
   const { control, handleSubmit, watch } = useForm<ConfirmEmailData>({
-    defaultValues: { username: route.params.username },
+    defaultValues: { email: route.params.email },
   });
-
   const navigation = useNavigation<ConfirmEmailNavigationProp>();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -30,10 +30,9 @@ const ConfirmEmailScreen = () => {
     if (isLoading) return;
     setIsLoading(true);
     try {
-      const res = await Auth.confirmSignUp(data.username, data.code);
-      console.log(res);
+      const res = await Auth.confirmSignUp(data.email, data.code);
       // @ts-ignore
-      navigation.navigate("Home");
+      navigation.navigate("Sign in");
     } catch (e) {
       Alert.alert("Something went wrong", e.message);
     } finally {
@@ -47,8 +46,8 @@ const ConfirmEmailScreen = () => {
 
   const onResendPress = async () => {
     try {
-      if (route.params.username) {
-        await Auth.resendSignUp(route.params.username);
+      if (route.params.email) {
+        await Auth.resendSignUp(route.params.email);
       }
       Alert.alert("Confirmation code sent");
     } catch (e) {
@@ -62,11 +61,15 @@ const ConfirmEmailScreen = () => {
         <Text style={styles.title}>Confirm your email</Text>
 
         <FormInput
-          name="username"
+          name="email"
           control={control}
-          placeholder="Username"
+          placeholder="Email"
           rules={{
-            required: "Username is required",
+            pattern: {
+              value: EMAIL_REGEX,
+              message: "Please enter a valid email",
+            },
+            required: "Email is required",
           }}
         />
 

@@ -8,43 +8,34 @@ import { SignUpNavigationProp } from "../../types/navigation";
 import colors from "../../theme/colors";
 import { Auth } from "aws-amplify";
 import { useState } from "react";
-
-const EMAIL_REGEX =
-  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-const USERNAME_REGEX = /^[a-zA-Z0-9_]*$/; // alphanumeric and underscore
+import { EMAIL_REGEX } from "../../types/regExs";
 
 type SignUpData = {
   name: string;
   email: string;
-  username: string;
   password: string;
   passwordRepeat: string;
 };
 
 const SignUpScreen = () => {
-  const { control, handleSubmit, watch } = useForm<SignUpData>();
+  const { control, handleSubmit, watch, reset } = useForm<SignUpData>();
   const pwd = watch("password");
   const navigation = useNavigation<SignUpNavigationProp>();
   const [isLoading, setIsLoading] = useState(false);
 
-  const onRegisterPressed = async ({
-    name,
-    email,
-    username,
-    password,
-  }: SignUpData) => {
+  const onRegisterPressed = async ({ name, email, password }: SignUpData) => {
     if (isLoading) return;
     setIsLoading(true);
     try {
       await Auth.signUp({
-        username,
+        username: email,
         password,
-        attributes: { email, name, preferred_username: username },
+        attributes: { name },
       });
 
+      reset();
       // @ts-ignore
-      navigation.navigate("Confirm email", { username });
+      navigation.navigate("Confirm email", { email });
     } catch (e) {
       Alert.alert("Something went wrong", e.message);
     } finally {
@@ -85,34 +76,16 @@ const SignUpScreen = () => {
             },
           }}
         />
-
-        <FormInput
-          name="username"
-          control={control}
-          placeholder="Username"
-          rules={{
-            required: "Username is required",
-            minLength: {
-              value: 3,
-              message: "Username should be at least 3 characters long",
-            },
-            maxLength: {
-              value: 24,
-              message: "Username should be max 24 characters long",
-            },
-            pattern: {
-              value: USERNAME_REGEX,
-              message: "Username can only contain a-z, 0-9, _",
-            },
-          }}
-        />
         <FormInput
           name="email"
           control={control}
           placeholder="Email"
           rules={{
             required: "Email is required",
-            pattern: { value: EMAIL_REGEX, message: "Email is invalid" },
+            pattern: {
+              value: EMAIL_REGEX,
+              message: "Please enter a valid email",
+            },
           }}
         />
         <FormInput

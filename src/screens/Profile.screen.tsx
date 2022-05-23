@@ -1,4 +1,4 @@
-import { SafeAreaView } from "react-native";
+import { SafeAreaView, Text } from "react-native";
 import user from "../../assets/data/user.json";
 import FeedGridView from "../components/feed/FeedGridView";
 

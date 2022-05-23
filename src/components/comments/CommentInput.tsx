@@ -16,7 +16,6 @@ const CommentInput: React.FC<IInput> = ({}) => {
   const [text, setText] = useState("");
 
   const onPost = () => {
-    console.log(text);
     setText("");
   };
 

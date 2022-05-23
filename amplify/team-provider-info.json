@@ -9,7 +9,22 @@
       "UnauthRoleName": "amplify-instagram-staging-113253-unauthRole",
       "StackName": "amplify-instagram-staging-113253",
       "StackId": "arn:aws:cloudformation:eu-central-1:677412976874:stack/amplify-instagram-staging-113253/c0e3be90-d8f9-11ec-afc4-0656162b65f8",
-      "AmplifyAppId": "dp2m4594vm9rq"
+      "AmplifyAppId": "dp2m4594vm9rq",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-instagram-staging-113253-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    },
+    "categories": {
+      "auth": {
+        "notJustPhotos": {
+          "facebookAppId": "1188023448674443",
+          "googleClientId": "737664143014-hgm9b337jjbsv0mk1tk7kkvbspiu26jr.apps.googleusercontent.com"
+        }
+      },
+      "function": {
+        "notJustPhotosPostConfirmation": {
+          "deploymentBucketName": "amplify-instagram-staging-113253-deployment",
+          "s3Key": "amplify-builds/notJustPhotosPostConfirmation-633349766d2b6671304b-build.zip"
+        }
+      }
     }
   }
 }

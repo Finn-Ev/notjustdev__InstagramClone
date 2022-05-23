@@ -1,17 +1,32 @@
 import React from "react";
 import CustomButton from "./CustomButton";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import { Alert } from "react-native";
+import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth";
+import { Auth } from "aws-amplify";
 
 const SocialSignInButtons = () => {
-  const onSignInFacebook = () => {
-    console.warn("onSignInFacebook");
+  const onSignInFacebook = async () => {
+    try {
+      await Auth.federatedSignIn({
+        provider: CognitoHostedUIIdentityProvider.Facebook,
+      });
+    } catch (e) {
+      Alert.alert("Error", e.message);
+    }
   };
 
-  const onSignInGoogle = () => {
-    console.warn("onSignInGoogle");
+  const onSignInGoogle = async () => {
+    try {
+      await Auth.federatedSignIn({
+        provider: CognitoHostedUIIdentityProvider.Google,
+      });
+    } catch (e) {
+      Alert.alert("Error", e.message);
+    }
   };
 
-  const onSignInApple = () => {
+  const onSignInApple = async () => {
     console.warn("onSignInApple");
   };
 

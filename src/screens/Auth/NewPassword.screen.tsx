@@ -6,9 +6,10 @@ import { useForm } from "react-hook-form";
 import { NewPasswordNavigationProp } from "../../types/navigation";
 import { Auth } from "aws-amplify";
 import { useState } from "react";
+import { EMAIL_REGEX } from "../../types/regExs";
 
 type NewPasswordType = {
-  username: string;
+  email: string;
   code: string;
   password: string;
 };
@@ -24,7 +25,7 @@ const NewPasswordScreen = () => {
     setIsLoading(true);
     try {
       const response = await Auth.forgotPasswordSubmit(
-        data.username,
+        data.email,
         data.code,
         data.password
       );
@@ -48,10 +49,16 @@ const NewPasswordScreen = () => {
         <Text style={styles.title}>Reset your password</Text>
 
         <FormInput
-          placeholder="Username"
-          name="username"
+          placeholder="Email"
+          name="email"
           control={control}
-          rules={{ required: "Username is required" }}
+          rules={{
+            pattern: {
+              value: EMAIL_REGEX,
+              message: "Please enter a valid email",
+            },
+            required: "Email is required",
+          }}
         />
 
         <FormInput

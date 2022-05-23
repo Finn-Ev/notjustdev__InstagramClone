@@ -21,9 +21,10 @@ import { Auth } from "aws-amplify";
 import { useRef, useState } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useAuthContext } from "../../context/AuthContext";
+import { EMAIL_REGEX } from "../../types/regExs";
 
 type SignInData = {
-  username: string;
+  email: string;
   password: string;
 };
 
@@ -31,23 +32,19 @@ const SignInScreen = () => {
   const { height } = useWindowDimensions();
   const navigation = useNavigation<SignInNavigationProp>();
   const [isLoading, setIsLoading] = useState(false);
-  const { setUser } = useAuthContext();
 
-  const { control, handleSubmit } = useForm<SignInData>();
+  const { control, handleSubmit, reset } = useForm<SignInData>();
 
-  const onSignInPressed = async ({ username, password }: SignInData) => {
+  const onSignInPressed = async ({ email, password }: SignInData) => {
     if (isLoading) return;
     setIsLoading(true);
     try {
-      const cognitoUser = await Auth.signIn(username, password);
-      setUser(cognitoUser);
-
-      // @ts-ignore
-      navigation.navigate("Home");
+      await Auth.signIn(email, password);
+      reset();
     } catch (e) {
       console.log(e.type);
       if (e.name === "UserNotConfirmedException") {
-        navigation.navigate("Confirm email", { username });
+        navigation.navigate("Confirm email", { email });
       } else {
         Alert.alert(
           "Sign in failed",
@@ -81,10 +78,16 @@ const SignInScreen = () => {
 
         <Text style={{ marginVertical: 10 }}> or </Text>
         <FormInput
-          name="username"
-          placeholder="Username"
+          name="email"
+          placeholder="Email"
           control={control}
-          rules={{ required: "Username is required" }}
+          rules={{
+            pattern: {
+              value: EMAIL_REGEX,
+              message: "Please enter a valid email",
+            },
+            required: "Email is required",
+          }}
         />
 
         <FormInput

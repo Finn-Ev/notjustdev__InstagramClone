@@ -62,7 +62,6 @@ const PostUploadScreen: React.FC<IPostUploadScreen> = ({}) => {
         quality: 0.75,
         skipProcessing: true,
       });
-      console.log(result);
     }
   };
 
@@ -77,8 +76,6 @@ const PostUploadScreen: React.FC<IPostUploadScreen> = ({}) => {
           mute: false,
         });
       } catch (e) {
-        console.error(e);
-
         setIsRecording(false);
       }
     }

@@ -16,7 +16,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const linking: LinkingOptions<RootStackParamList> = {
   prefixes: [
     Linking.createURL("/"),
-    "https://instagramclone.com",
+    "https://notjustphotos38623.com",
     "exp://192.168.178.21:19000",
   ],
   config: {
@@ -37,6 +37,7 @@ const linking: LinkingOptions<RootStackParamList> = {
   },
 };
 
+console.log(Linking.createURL("/"));
 const Navigation: React.FC = ({}) => {
   const { user } = useAuthContext();
 
@@ -49,15 +50,19 @@ const Navigation: React.FC = ({}) => {
     );
   }
 
+  console.log(user);
   return (
     <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
       <Stack.Navigator screenOptions={{}}>
         {user ? (
-          <Stack.Screen
-            name={"Home"}
-            component={BottomTabNavigator}
-            options={{ headerShown: false }}
-          />
+          <>
+            <Stack.Screen
+              name={"Home"}
+              component={BottomTabNavigator}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen name={"Comments"} component={CommentsScreen} />
+          </>
         ) : (
           <>
             <Stack.Screen
@@ -65,7 +70,6 @@ const Navigation: React.FC = ({}) => {
               component={AuthStackNavigator}
               options={{ headerShown: false }}
             />
-            <Stack.Screen name={"Comments"} component={CommentsScreen} />
           </>
         )}
       </Stack.Navigator>

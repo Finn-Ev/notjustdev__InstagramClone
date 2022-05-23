@@ -36,9 +36,7 @@ const EditProfileScreen: React.FC<IEditProfile> = ({}) => {
 
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
 
-  const onSubmit = (data: any) => {
-    console.log({ data });
-  };
+  const onSubmit = (data: any) => {};
 
   const changePhoto = async () => {
     // let cameraAccess = await ImagePicker.getCameraPermissionsAsync();

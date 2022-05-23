@@ -9,28 +9,41 @@
       "UnauthRoleName": "amplify-instagram-staging-113253-unauthRole",
       "StackName": "amplify-instagram-staging-113253",
       "StackId": "arn:aws:cloudformation:eu-central-1:677412976874:stack/amplify-instagram-staging-113253/c0e3be90-d8f9-11ec-afc4-0656162b65f8",
-      "AmplifyAppId": "dp2m4594vm9rq"
+      "AmplifyAppId": "dp2m4594vm9rq",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-instagram-staging-113253-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     }
   },
   "auth": {
-    "Instagram": {
+    "notJustPhotos": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "notJustPhotosPostConfirmation",
+          "triggerProvider": "Cognito",
+          "attributes": [
+            "Arn",
+            "Name"
+          ]
+        }
+      ],
       "customAuth": false,
       "frontendAuthConfig": {
-        "socialProviders": [],
-        "usernameAttributes": [],
+        "socialProviders": [
+          "FACEBOOK",
+          "GOOGLE"
+        ],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
         "signupAttributes": [
-          "PREFERRED_USERNAME",
           "EMAIL",
           "NAME"
         ],
         "passwordProtectionSettings": {
           "passwordPolicyMinLength": 8,
-          "passwordPolicyCharacters": [
-            "REQUIRES_LOWERCASE"
-          ]
+          "passwordPolicyCharacters": []
         },
         "mfaConfiguration": "OFF",
         "mfaTypes": [
@@ -40,21 +53,45 @@
           "EMAIL"
         ]
       },
-      "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/amplify-instagram-staging-113253-deployment/amplify-cfn-templates/auth/Instagram-cloudformation-template.json",
-        "logicalId": "authInstagram"
-      },
-      "lastPushTimeStamp": "2022-05-22T12:25:58.289Z",
       "output": {
-        "UserPoolId": "eu-central-1_jsqemhKUT",
-        "AppClientIDWeb": "5c51c84h98qtlcm1cv0m5o1vtn",
-        "AppClientID": "6s1pec5lpm4fkm907j26jv90kc",
-        "IdentityPoolId": "eu-central-1:1716cb41-6683-4b56-9c76-ed971955c336",
-        "UserPoolArn": "arn:aws:cognito-idp:eu-central-1:677412976874:userpool/eu-central-1_jsqemhKUT",
+        "UserPoolId": "eu-central-1_0nnxibYT5",
+        "AppClientIDWeb": "20mv2c3pqt7nb2g2kjmpa2a4po",
+        "AppClientID": "4c094hapmmba2udc5h7gifn436",
+        "HostedUIDomain": "instagram5fa03509-5fa03509-staging",
+        "IdentityPoolId": "eu-central-1:2ba14cdf-e112-418e-8f40-657d3876516c",
+        "UserPoolArn": "arn:aws:cognito-idp:eu-central-1:677412976874:userpool/eu-central-1_0nnxibYT5",
         "IdentityPoolName": "testAuthIdentityPool__staging",
-        "UserPoolName": "Instagram"
+        "OAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"notjustphotos://\",\"exp://127.0.0.1:19000/--/\"],\"LogoutURLs\":[\"notjustphotos://\",\"exp://127.0.0.1:19000/--/\"]}",
+        "UserPoolName": "notJustPhotos"
       },
-      "lastPushDirHash": "cUlvgdS474p/iFmkLZM3goyFgNo="
+      "lastPushTimeStamp": "2022-05-23T21:32:56.909Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-instagram-staging-113253-deployment/amplify-cfn-templates/auth/notJustPhotos-cloudformation-template.json",
+        "logicalId": "authnotJustPhotos"
+      },
+      "lastPushDirHash": "1btaIEbIiOqjwwgHANeLXswEuhQ="
+    }
+  },
+  "function": {
+    "notJustPhotosPostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "output": {
+        "Region": "eu-central-1",
+        "Arn": "arn:aws:lambda:eu-central-1:677412976874:function:notJustPhotosPostConfirmation-staging",
+        "Name": "notJustPhotosPostConfirmation-staging",
+        "LambdaExecutionRole": "notJustPhotosPostConfirmation-staging"
+      },
+      "lastPushTimeStamp": "2022-05-23T21:32:56.876Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-instagram-staging-113253-deployment/amplify-cfn-templates/function/notJustPhotosPostConfirmation-cloudformation-template.json",
+        "logicalId": "functionnotJustPhotosPostConfirmation"
+      },
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-instagram-staging-113253-deployment",
+        "s3Key": "amplify-builds/notJustPhotosPostConfirmation-633349766d2b6671304b-build.zip"
+      }
     }
   }
 }

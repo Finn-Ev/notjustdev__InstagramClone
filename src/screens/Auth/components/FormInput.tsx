@@ -8,6 +8,7 @@ interface ICustomInput<ContentType> {
   rules?: {};
   placeholder?: string;
   secureTextEntry?: boolean;
+  onSubmitEditing?: () => void;
 }
 
 function CustomInput<ContentType>({
@@ -16,6 +17,7 @@ function CustomInput<ContentType>({
   rules = {},
   placeholder = "",
   secureTextEntry = false,
+  onSubmitEditing,
 }: ICustomInput<ContentType>) {
   return (
     <Controller
@@ -37,9 +39,12 @@ function CustomInput<ContentType>({
               value={value as string}
               onChangeText={onChange}
               onBlur={onBlur}
+              placeholderTextColor={"#a8a8a8"}
               placeholder={placeholder}
+              returnKeyType={placeholder === "Password" ? "done" : "next"}
               style={styles.input}
               secureTextEntry={secureTextEntry}
+              onSubmitEditing={onSubmitEditing}
             />
           </View>
           {error && (

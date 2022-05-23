@@ -5,6 +5,7 @@ import { RouteProp } from "@react-navigation/native";
 // stack navigation param lists
 export type RootStackParamList = {
   Home: undefined;
+  Auth: undefined;
   Comments: { postId: string };
 };
 

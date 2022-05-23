@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, FlatList } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 
 // @ts-ignore
 import users from "../../assets/data/users.json";

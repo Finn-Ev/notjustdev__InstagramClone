@@ -1,4 +1,4 @@
-import { Image, SafeAreaView, Text } from "react-native";
+import { SafeAreaView } from "react-native";
 import user from "../../assets/data/user.json";
 import FeedGridView from "../components/feed/FeedGridView";
 
@@ -9,7 +9,7 @@ import {
   MyProfileRouteProp,
   UserProfileNavigationProp,
   UserProfileRouteProp,
-} from "../navigation/types";
+} from "../types/navigation";
 
 interface IProfile {}
 

@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Image, TextInput } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import user from "../../assets/data/user.json";
 import colors from "../theme/colors";
 import fonts from "../theme/fonts";

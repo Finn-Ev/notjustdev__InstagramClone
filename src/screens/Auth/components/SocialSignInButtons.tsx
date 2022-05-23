@@ -1,5 +1,6 @@
 import React from "react";
 import CustomButton from "./CustomButton";
+import AntDesign from "@expo/vector-icons/AntDesign";
 
 const SocialSignInButtons = () => {
   const onSignInFacebook = () => {
@@ -19,20 +20,23 @@ const SocialSignInButtons = () => {
       <CustomButton
         text="Sign In with Facebook"
         onPress={onSignInFacebook}
-        bgColor="#E7EAF4"
-        fgColor="#4765A9"
+        bgColor="#4765A9"
+        fgColor="#fff"
+        icon={<AntDesign color={"#fff"} size={20} name={"facebook-square"} />}
       />
       <CustomButton
         text="Sign In with Google"
         onPress={onSignInGoogle}
-        bgColor="#FAE9EA"
-        fgColor="#DD4D44"
+        bgColor="#DD4D44"
+        fgColor="#fff"
+        icon={<AntDesign color={"#fff"} size={20} name={"google"} />}
       />
       <CustomButton
         text="Sign In with Apple"
         onPress={onSignInApple}
-        bgColor="#e3e3e3"
-        fgColor="#363636"
+        bgColor="#000"
+        fgColor="#fff"
+        icon={<AntDesign color={"#fff"} size={18} name={"apple1"} />}
       />
     </>
   );

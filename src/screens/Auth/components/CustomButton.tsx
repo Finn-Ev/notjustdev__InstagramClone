@@ -1,6 +1,7 @@
 import React from "react";
-import { Text, StyleSheet, Pressable } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import colors from "../../../theme/colors";
+import { MaterialIcons } from "@expo/vector-icons";
 
 interface ICustomButton {
   onPress: () => void;
@@ -8,6 +9,7 @@ interface ICustomButton {
   type?: "PRIMARY" | "SECONDARY" | "TERTIARY";
   bgColor?: string;
   fgColor?: string;
+  icon?: any;
 }
 
 const CustomButton = ({
@@ -16,25 +18,32 @@ const CustomButton = ({
   type = "PRIMARY",
   bgColor,
   fgColor,
+  icon = null,
 }: ICustomButton) => {
   return (
     <Pressable
       onPress={onPress}
       style={[
         styles.container,
+        // @ts-ignore
         styles[`container_${type}`],
         bgColor ? { backgroundColor: bgColor } : {},
       ]}
     >
-      <Text
-        style={[
-          styles.text,
-          styles[`text_${type}`],
-          fgColor ? { color: fgColor } : {},
-        ]}
-      >
-        {text}
-      </Text>
+      <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <Text
+          style={[
+            styles.text,
+            // @ts-ignore
+            styles[`text_${type}`],
+            fgColor ? { color: fgColor } : {},
+          ]}
+        >
+          {text + " "}
+        </Text>
+
+        {icon}
+      </View>
     </Pressable>
   );
 };
@@ -64,6 +73,8 @@ const styles = StyleSheet.create({
   text: {
     fontWeight: "bold",
     color: "white",
+    alignItems: "center",
+    justifyContent: "center",
   },
 
   text_PRIMARY: {},

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Alert } from "react-native";
 import FormInput from "./components/FormInput";
 import CustomButton from "./components/CustomButton";
 import SocialSignInButtons from "./components/SocialSignInButtons";
@@ -8,8 +8,9 @@ import { useForm } from "react-hook-form";
 import {
   ConfirmEmailNavigationProp,
   ConfirmEmailRouteProp,
-} from "../../../types/navigation";
+} from "../../types/navigation";
 import { useRoute } from "@react-navigation/native";
+import { Auth } from "aws-amplify";
 
 type ConfirmEmailData = {
   username: string;
@@ -18,23 +19,41 @@ type ConfirmEmailData = {
 
 const ConfirmEmailScreen = () => {
   const route = useRoute<ConfirmEmailRouteProp>();
-  const { control, handleSubmit } = useForm<ConfirmEmailData>({
+  const { control, handleSubmit, watch } = useForm<ConfirmEmailData>({
     defaultValues: { username: route.params.username },
   });
 
   const navigation = useNavigation<ConfirmEmailNavigationProp>();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const onConfirmPressed = (data: ConfirmEmailData) => {
-    console.warn(data);
-    navigation.navigate("Sign in");
+  const onConfirmPressed = async (data: ConfirmEmailData) => {
+    if (isLoading) return;
+    setIsLoading(true);
+    try {
+      const res = await Auth.confirmSignUp(data.username, data.code);
+      console.log(res);
+      // @ts-ignore
+      navigation.navigate("Home");
+    } catch (e) {
+      Alert.alert("Something went wrong", e.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const onSignInPress = () => {
     navigation.navigate("Sign in");
   };
 
-  const onResendPress = () => {
-    console.warn("onResendPress");
+  const onResendPress = async () => {
+    try {
+      if (route.params.username) {
+        await Auth.resendSignUp(route.params.username);
+      }
+      Alert.alert("Confirmation code sent");
+    } catch (e) {
+      Alert.alert("Something went wrong", e.message);
+    }
   };
 
   return (

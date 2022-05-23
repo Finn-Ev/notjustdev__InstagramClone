@@ -2,8 +2,6 @@ import { useRef, useState } from "react";
 import { FlatList, View, ViewToken } from "react-native";
 import posts from "../../assets/data/posts.json";
 import FeedPost from "../components/feed/FeedPost";
-import CommentsScreen from "./Comments.screen";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 interface IHomeScreen {}
 {

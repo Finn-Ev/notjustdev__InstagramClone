@@ -1,7 +1,7 @@
-import { ComponentType, ReactElement } from 'react';
-import { StyleSheet, View, Text, Image, FlatList } from 'react-native';
-import { IPost } from '../../types/models';
-import FeedGridItem from './FeedGridItem';
+import { ComponentType, ReactElement } from "react";
+import { StyleSheet, View, Text, Image, FlatList } from "react-native";
+import { IPost } from "../../types/models";
+import FeedGridItem from "./FeedGridItem";
 
 interface IFeedGridView {
   data: IPost[];
@@ -25,7 +25,5 @@ const FeedGridView: React.FC<IFeedGridView> = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default FeedGridView;

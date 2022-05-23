@@ -3,7 +3,7 @@ import fonts from "../../theme/fonts";
 import user from "../../../assets/data/user.json";
 import Button from "../shared/Button";
 import { useNavigation } from "@react-navigation/native";
-import { ProfileNavigationProp } from "../../navigation/types";
+import { ProfileNavigationProp } from "../../types/navigation";
 import { Auth } from "aws-amplify";
 
 interface IProfileHeader {}

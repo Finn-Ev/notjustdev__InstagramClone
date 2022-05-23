@@ -3,7 +3,7 @@ import FeedScreen from "../screens/Feed.screen";
 import CommentsScreen from "../screens/Comments.screen";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import colors from "../theme/colors";
-import { SearchTabNavigatorParamList } from "./types";
+import { SearchTabNavigatorParamList } from "../types/navigation";
 import UserSearchScreen from "../screens/UserSearch.screen";
 
 const Tab = createMaterialTopTabNavigator<SearchTabNavigatorParamList>();

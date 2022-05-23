@@ -12,7 +12,7 @@ import fonts from "../../theme/fonts";
 import Carousel from "../shared/Carousel";
 import VideoPlayer from "../shared/VideoPlayer";
 import { useNavigation } from "@react-navigation/native";
-import { FeedNavigationProp } from "../../navigation/types";
+import { FeedNavigationProp } from "../../types/navigation";
 
 interface IFeedPost {
   post: IPost;

@@ -254,7 +254,9 @@
           },
           "authTriggerConnections": "{\"triggerType\":\"PostConfirmation\",\"lambdaFunctionName\":\"notJustPhotosPostConfirmation\"}",
           "permissions": "",
-          "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"1188023448674443\",\"client_secret\":\"e3c5cc21e8e2fb7d511be1b0fcf70b4e\"},{\"ProviderName\":\"Google\",\"client_id\":\"737664143014-hgm9b337jjbsv0mk1tk7kkvbspiu26jr.apps.googleusercontent.com\",\"client_secret\":\"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\"}]",
+          "hostedUIProviderCreds": "[]",
+          "facebookAppId": "1188023448674443",
+          "googleClientId": "737664143014-hgm9b337jjbsv0mk1tk7kkvbspiu26jr.apps.googleusercontent.com",
           "env": "staging"
         }
       }
@@ -267,7 +269,45 @@
           "modules": "custom",
           "resourceName": "notJustPhotosPostConfirmation",
           "deploymentBucketName": "amplify-instagram-staging-113253-deployment",
-          "s3Key": "amplify-builds/notJustPhotosPostConfirmation-633349766d2b6671304b-build.zip",
+          "s3Key": "amplify-builds/notJustPhotosPostConfirmation-6a644163735342596244-build.zip",
+          "apinotJustPhotosGraphQLAPIIdOutput": {
+            "Fn::GetAtt": [
+              "apinotJustPhotos",
+              "Outputs.GraphQLAPIIdOutput"
+            ]
+          },
+          "apinotJustPhotosGraphQLAPIEndpointOutput": {
+            "Fn::GetAtt": [
+              "apinotJustPhotos",
+              "Outputs.GraphQLAPIEndpointOutput"
+            ]
+          },
+          "apinotJustPhotosGraphQLAPIKeyOutput": {
+            "Fn::GetAtt": [
+              "apinotJustPhotos",
+              "Outputs.GraphQLAPIKeyOutput"
+            ]
+          },
+          "env": "staging"
+        }
+      }
+    },
+    "apinotJustPhotos": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-instagram-staging-113253-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "Parameters": {
+          "AppSyncApiName": "notJustPhotos",
+          "DynamoDBBillingMode": "PAY_PER_REQUEST",
+          "DynamoDBEnableServerSideEncryption": false,
+          "authRoleName": {
+            "Ref": "AuthRoleName"
+          },
+          "unauthRoleName": {
+            "Ref": "UnauthRoleName"
+          },
+          "S3DeploymentBucket": "amplify-instagram-staging-113253-deployment",
+          "S3DeploymentRootKey": "amplify-appsync-files/557c0f1c2bac5f3415c0e3ef8fafa0a6da24a0f2",
           "env": "staging"
         }
       }

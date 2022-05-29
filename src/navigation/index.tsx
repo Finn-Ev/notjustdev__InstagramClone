@@ -37,7 +37,6 @@ const linking: LinkingOptions<RootStackParamList> = {
   },
 };
 
-console.log(Linking.createURL("/"));
 const Navigation: React.FC = ({}) => {
   const { user } = useAuthContext();
 
@@ -50,7 +49,6 @@ const Navigation: React.FC = ({}) => {
     );
   }
 
-  console.log(user);
   return (
     <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
       <Stack.Navigator screenOptions={{}}>

@@ -1,24 +1,52 @@
-import React from "react";
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import React, { useEffect } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  KeyboardTypeOptions,
+} from "react-native";
 import { Control, Controller, Path } from "react-hook-form";
 
 interface ICustomInput<ContentType> {
   control: Control<ContentType, object>;
   name: Path<ContentType>;
   rules?: {};
+  onFocus?: () => void;
+  displayIndex?: number;
+  currentlySelectedInputDisplayIndex?: number;
   placeholder?: string;
   secureTextEntry?: boolean;
   onSubmitEditing?: () => void;
+  isLastInput?: boolean;
+  keyboardType?: KeyboardTypeOptions;
 }
 
 function CustomInput<ContentType>({
   control,
   name,
   rules = {},
+  displayIndex = 0,
+  currentlySelectedInputDisplayIndex = 0,
+  onFocus,
   placeholder = "",
   secureTextEntry = false,
   onSubmitEditing,
+  isLastInput = false,
+  keyboardType = "default",
 }: ICustomInput<ContentType>) {
+  const inputRef = React.useRef<TextInput>(null);
+
+  const focusInput = () => {
+    inputRef.current?.focus();
+  };
+
+  useEffect(() => {
+    if (currentlySelectedInputDisplayIndex === displayIndex) {
+      focusInput();
+    }
+  }, [currentlySelectedInputDisplayIndex, displayIndex]);
+
   return (
     <Controller
       control={control}
@@ -39,9 +67,15 @@ function CustomInput<ContentType>({
               value={value as string}
               onChangeText={onChange}
               onBlur={onBlur}
+              blurOnSubmit={false}
+              keyboardType={keyboardType}
+              ref={inputRef}
+              onFocus={onFocus}
               placeholderTextColor={"#a8a8a8"}
               placeholder={placeholder}
-              returnKeyType={placeholder === "Password" ? "done" : "next"}
+              autoCorrect={false}
+              autoCapitalize={"none"}
+              returnKeyType={isLastInput ? "done" : "next"}
               style={styles.input}
               secureTextEntry={secureTextEntry}
               onSubmitEditing={onSubmitEditing}

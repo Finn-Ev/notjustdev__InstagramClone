@@ -1,0 +1,5 @@
+{
+  "AppSyncApiName": "notJustPhotos",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false
+}

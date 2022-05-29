@@ -1,10 +1,11 @@
-import { Image, Pressable, Text, View } from 'react-native';
-import AntDesign from '@expo/vector-icons/AntDesign';
-import { StyleSheet } from 'react-native';
-import colors from '../../theme/colors';
-import fonts from '../../theme/fonts';
-import { IComment } from '../../types/models';
-import { useState } from 'react';
+import { Image, Pressable, Text, View } from "react-native";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import { StyleSheet } from "react-native";
+import colors from "../../theme/colors";
+import fonts from "../../theme/fonts";
+import { useState } from "react";
+import { Comment as IComment } from "../../API";
+import { DEFAULT_USER_IMAGE } from "../../config";
 
 interface CommentProps {
   comment: IComment;
@@ -20,7 +21,10 @@ const Comment: React.FC<CommentProps> = ({
   return (
     <View style={styles.comment}>
       {displayedInCommentScreen && (
-        <Image source={{ uri: comment.user.image }} style={styles.avatar} />
+        <Image
+          source={{ uri: comment.User.image || DEFAULT_USER_IMAGE }}
+          style={styles.avatar}
+        />
       )}
 
       <View style={styles.commentContent}>
@@ -30,7 +34,7 @@ const Comment: React.FC<CommentProps> = ({
             marginHorizontal: displayedInCommentScreen ? 10 : 0,
           }}
         >
-          <Text style={styles.bold}>{comment.user.username}</Text>{' '}
+          <Text style={styles.bold}>{comment.User.username}</Text>{" "}
           {comment.text}
         </Text>
         {displayedInCommentScreen && (
@@ -42,9 +46,9 @@ const Comment: React.FC<CommentProps> = ({
         )}
       </View>
 
-      <Pressable hitSlop={10} onPress={() => setIsLiked(v => !v)}>
+      <Pressable hitSlop={10} onPress={() => setIsLiked((v) => !v)}>
         <AntDesign
-          name={isLiked ? 'heart' : 'hearto'}
+          name={isLiked ? "heart" : "hearto"}
           size={14}
           color={isLiked ? colors.accent : colors.black}
         />
@@ -55,8 +59,8 @@ const Comment: React.FC<CommentProps> = ({
 
 const styles = StyleSheet.create({
   comment: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   commentContent: {
     flex: 1,
@@ -68,7 +72,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   footer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginHorizontal: 10,
     marginBottom: 10,
   },

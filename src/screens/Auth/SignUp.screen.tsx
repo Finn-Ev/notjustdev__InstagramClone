@@ -23,6 +23,11 @@ const SignUpScreen = () => {
   const navigation = useNavigation<SignUpNavigationProp>();
   const [isLoading, setIsLoading] = useState(false);
 
+  const [
+    currentlySelectedInputDisplayIndex,
+    setCurrentlySelectedInputDisplayIndex,
+  ] = useState(0);
+
   const onRegisterPressed = async ({ name, email, password }: SignUpData) => {
     if (isLoading) return;
     setIsLoading(true);
@@ -61,6 +66,16 @@ const SignUpScreen = () => {
         <Text style={styles.title}>Create an account</Text>
 
         <FormInput
+          displayIndex={1}
+          currentlySelectedInputDisplayIndex={
+            currentlySelectedInputDisplayIndex
+          }
+          onSubmitEditing={() => {
+            setCurrentlySelectedInputDisplayIndex(2);
+          }}
+          onFocus={() => {
+            setCurrentlySelectedInputDisplayIndex(1);
+          }}
           name="name"
           control={control}
           placeholder="Full name"
@@ -77,9 +92,20 @@ const SignUpScreen = () => {
           }}
         />
         <FormInput
+          displayIndex={2}
+          currentlySelectedInputDisplayIndex={
+            currentlySelectedInputDisplayIndex
+          }
+          onSubmitEditing={() => {
+            setCurrentlySelectedInputDisplayIndex(3);
+          }}
+          onFocus={() => {
+            setCurrentlySelectedInputDisplayIndex(2);
+          }}
           name="email"
           control={control}
           placeholder="Email"
+          keyboardType={"email-address"}
           rules={{
             required: "Email is required",
             pattern: {
@@ -89,6 +115,16 @@ const SignUpScreen = () => {
           }}
         />
         <FormInput
+          displayIndex={3}
+          currentlySelectedInputDisplayIndex={
+            currentlySelectedInputDisplayIndex
+          }
+          onSubmitEditing={() => {
+            setCurrentlySelectedInputDisplayIndex(4);
+          }}
+          onFocus={() => {
+            setCurrentlySelectedInputDisplayIndex(3);
+          }}
           name="password"
           control={control}
           placeholder="Password"
@@ -102,10 +138,19 @@ const SignUpScreen = () => {
           }}
         />
         <FormInput
+          displayIndex={4}
+          currentlySelectedInputDisplayIndex={
+            currentlySelectedInputDisplayIndex
+          }
+          onSubmitEditing={handleSubmit(onRegisterPressed)}
+          onFocus={() => {
+            setCurrentlySelectedInputDisplayIndex(4);
+          }}
           name="passwordRepeat"
           control={control}
           placeholder="Repeat Password"
           secureTextEntry
+          isLastInput
           rules={{
             validate: (value: string) =>
               value === pwd || "Password do not match",
@@ -128,7 +173,7 @@ const SignUpScreen = () => {
           </Text>
         </Text>
 
-        <SocialSignInButtons />
+        {/*<SocialSignInButtons />*/}
 
         <CustomButton
           text="Have an account? Sign in"

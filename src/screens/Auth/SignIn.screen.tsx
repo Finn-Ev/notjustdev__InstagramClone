@@ -17,7 +17,7 @@ import SocialSignInButtons from "./components/SocialSignInButtons";
 import { useNavigation } from "@react-navigation/native";
 import { set, useForm } from "react-hook-form";
 import { SignInNavigationProp } from "../../types/navigation";
-import { Auth } from "aws-amplify";
+import { Auth, loadingLogo } from "aws-amplify";
 import { useRef, useState } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useAuthContext } from "../../context/AuthContext";
@@ -34,6 +34,11 @@ const SignInScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { control, handleSubmit, reset } = useForm<SignInData>();
+
+  const [
+    currentlySelectedInputDisplayIndex,
+    setCurrentlySelectedInputDisplayIndex,
+  ] = useState(0);
 
   const onSignInPressed = async ({ email, password }: SignInData) => {
     if (isLoading) return;
@@ -78,9 +83,15 @@ const SignInScreen = () => {
 
         <Text style={{ marginVertical: 10 }}> or </Text>
         <FormInput
+          displayIndex={1}
+          currentlySelectedInputDisplayIndex={
+            currentlySelectedInputDisplayIndex
+          }
+          onFocus={() => setCurrentlySelectedInputDisplayIndex(1)}
           name="email"
           placeholder="Email"
           control={control}
+          keyboardType={"email-address"}
           rules={{
             pattern: {
               value: EMAIL_REGEX,
@@ -88,21 +99,32 @@ const SignInScreen = () => {
             },
             required: "Email is required",
           }}
+          onSubmitEditing={() => {
+            setCurrentlySelectedInputDisplayIndex(2);
+          }}
         />
 
         <FormInput
+          displayIndex={2}
+          currentlySelectedInputDisplayIndex={
+            currentlySelectedInputDisplayIndex
+          }
+          onFocus={() => {
+            setCurrentlySelectedInputDisplayIndex(2);
+          }}
           name="password"
           placeholder="Password"
           secureTextEntry
           control={control}
+          isLastInput
           rules={{
             required: "Password is required",
-            minLength: {
-              value: 3,
-              message: "Password should be minimum 3 characters long",
-            },
+            // minLength: {
+            //   value: 3,
+            //   message: "Password should be minimum 3 characters long",
+            // },
           }}
-          onSubmitEditing={() => handleSubmit(onSignInPressed)}
+          onSubmitEditing={handleSubmit(onSignInPressed)}
         />
 
         <CustomButton
@@ -111,13 +133,13 @@ const SignInScreen = () => {
         />
 
         <CustomButton
-          text="Forgot password?"
-          onPress={onForgotPasswordPressed}
+          text="Don't have an account? Create one"
+          onPress={onSignUpPressed}
           type="TERTIARY"
         />
         <CustomButton
-          text="Don't have an account? Create one"
-          onPress={onSignUpPressed}
+          text="Forgot password?"
+          onPress={onForgotPasswordPressed}
           type="TERTIARY"
         />
       </View>

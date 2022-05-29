@@ -5,7 +5,6 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import Entypo from "@expo/vector-icons/Entypo";
 import Comment from "../comments/Comment";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import { IPost } from "../../types/models";
 import { useState } from "react";
 import DoublePressable from "../shared/DoublePressable";
 import fonts from "../../theme/fonts";
@@ -13,9 +12,11 @@ import Carousel from "../shared/Carousel";
 import VideoPlayer from "../shared/VideoPlayer";
 import { useNavigation } from "@react-navigation/native";
 import { FeedNavigationProp } from "../../types/navigation";
+import { Post } from "../../API";
+import { DEFAULT_USER_IMAGE } from "../../config";
 
 interface IFeedPost {
-  post: IPost;
+  post: Post;
   isVisible: boolean;
 }
 
@@ -56,16 +57,16 @@ const FeedPost: React.FC<IFeedPost> = ({ post, isVisible }) => {
         <Image
           style={styles.userAvatar}
           source={{
-            uri: post.user.image,
+            uri: post.User.image || DEFAULT_USER_IMAGE,
           }}
         />
         <Text
           onPress={() =>
-            navigation.navigate("UserProfile", { userId: post.user.id })
+            navigation.navigate("UserProfile", { userId: post.User.id })
           }
           style={styles.userName}
         >
-          {post.user.username}
+          {post.User.username}
         </Text>
         <Entypo
           name="dots-three-horizontal"
@@ -116,7 +117,7 @@ const FeedPost: React.FC<IFeedPost> = ({ post, isVisible }) => {
 
         {/* Description */}
         <Text style={styles.text} numberOfLines={isDescriptionExpanded ? 0 : 3}>
-          <Text style={styles.bold}>{post.user.username}</Text>{" "}
+          <Text style={styles.bold}>{post.User.username}</Text>{" "}
           {post.description}
         </Text>
         {!isDescriptionExpanded && (
@@ -138,10 +139,11 @@ const FeedPost: React.FC<IFeedPost> = ({ post, isVisible }) => {
         >
           View all {post.nofComments} comments
         </Text>
-        {post.comments &&
-          post.comments.map((comment) => (
-            <Comment key={comment.id} comment={comment} />
-          ))}
+        {post.Comments &&
+          post.Comments.items.map(
+            (comment) =>
+              comment && <Comment key={comment.id} comment={comment} />
+          )}
 
         {/* Posted date */}
         <Text style={styles.utilText}>{post.createdAt}</Text>

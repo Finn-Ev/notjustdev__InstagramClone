@@ -5,9 +5,9 @@ import fonts from "../theme/fonts";
 import FormInput from "../components/shared/FormInput";
 import { useForm } from "react-hook-form";
 import * as ImagePicker from "expo-image-picker";
-import { IUser } from "../types/models";
-import { URL_REGEX } from "../types/regExs";
+import { URL_REGEX } from "../util/regExs";
 import { useState } from "react";
+import { User } from "../API";
 
 interface IEditProfile {}
 
@@ -18,7 +18,7 @@ export type IEditableUserFields =
   | "bio"
   | "image";
 
-export type IEditableUser = Pick<IUser, IEditableUserFields>;
+export type IEditableUser = Pick<User, IEditableUserFields>;
 
 const EditProfileScreen: React.FC<IEditProfile> = ({}) => {
   const {

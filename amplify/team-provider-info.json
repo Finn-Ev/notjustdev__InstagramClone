@@ -22,7 +22,7 @@
       "function": {
         "notJustPhotosPostConfirmation": {
           "deploymentBucketName": "amplify-instagram-staging-113253-deployment",
-          "s3Key": "amplify-builds/notJustPhotosPostConfirmation-615731307048384a6358-build.zip"
+          "s3Key": "amplify-builds/notJustPhotosPostConfirmation-473834724b31654f5259-build.zip"
         }
       }
     }

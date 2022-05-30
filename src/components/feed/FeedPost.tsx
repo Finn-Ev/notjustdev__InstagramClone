@@ -11,7 +11,7 @@ import fonts from "../../theme/fonts";
 import Carousel from "../shared/Carousel";
 import VideoPlayer from "../shared/VideoPlayer";
 import { useNavigation } from "@react-navigation/native";
-import { FeedNavigationProp } from "../../types/navigation";
+import { FeedNavigationProp } from "../../navigation/types";
 import { Post } from "../../API";
 import { DEFAULT_USER_IMAGE } from "../../config";
 

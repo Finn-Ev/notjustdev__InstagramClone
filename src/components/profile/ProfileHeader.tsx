@@ -1,15 +1,20 @@
 import { StyleSheet, View, Text, Image } from "react-native";
 import fonts from "../../theme/fonts";
-import user from "../../../assets/data/user.json";
 import Button from "../shared/Button";
 import { useNavigation } from "@react-navigation/native";
-import { ProfileNavigationProp } from "../../types/navigation";
+import { ProfileNavigationProp } from "../../navigation/types";
 import { Auth } from "aws-amplify";
+import { User } from "../../API";
+import { DEFAULT_USER_IMAGE } from "../../config";
+import { useAuthContext } from "../../context/AuthContext";
 
-interface IProfileHeader {}
+interface IProfileHeader {
+  user: User;
+}
 
-const ProfileHeader: React.FC<IProfileHeader> = ({}) => {
+const ProfileHeader: React.FC<IProfileHeader> = ({ user }) => {
   const navigation = useNavigation<ProfileNavigationProp>();
+  const { userId: authUserId } = useAuthContext();
 
   return (
     <View style={styles.container}>
@@ -18,20 +23,25 @@ const ProfileHeader: React.FC<IProfileHeader> = ({}) => {
 
       <View style={styles.headerRow}>
         {/* Profile Image */}
-        <Image source={{ uri: user.image }} style={styles.avatar} />
+        <Image
+          source={{ uri: user.image || DEFAULT_USER_IMAGE }}
+          style={styles.avatar}
+        />
 
         {/* Posts, Follower and Following Stats */}
-        <View style={styles.numberContainer}>
-          <Text style={styles.numberText}>12</Text>
-          <Text>Posts</Text>
-        </View>
-        <View style={styles.numberContainer}>
-          <Text style={styles.numberText}>244</Text>
-          <Text>Followers</Text>
-        </View>
-        <View style={styles.numberContainer}>
-          <Text style={styles.numberText}>172</Text>
-          <Text>Following</Text>
+        <View style={styles.userStats}>
+          <View style={styles.numberContainer}>
+            <Text style={styles.numberText}>{user.nofPosts}</Text>
+            <Text>Posts</Text>
+          </View>
+          <View style={styles.numberContainer}>
+            <Text style={styles.numberText}>{user.nofFollowers}</Text>
+            <Text>Followers</Text>
+          </View>
+          <View style={styles.numberContainer}>
+            <Text style={styles.numberText}>{user.nofFollowings}</Text>
+            <Text>Following</Text>
+          </View>
         </View>
       </View>
 
@@ -42,14 +52,16 @@ const ProfileHeader: React.FC<IProfileHeader> = ({}) => {
       </View>
 
       {/* Buttons */}
-      <View style={styles.buttonContainer}>
-        <Button inline onPress={() => navigation.navigate("EditProfile")}>
-          Edit Profile
-        </Button>
-        <Button inline onPress={() => Auth.signOut()}>
-          Sign out
-        </Button>
-      </View>
+      {authUserId === user.id && (
+        <View style={styles.buttonContainer}>
+          <Button inline onPress={() => navigation.navigate("EditProfile")}>
+            Edit Profile
+          </Button>
+          <Button inline onPress={() => Auth.signOut()}>
+            Sign out
+          </Button>
+        </View>
+      )}
     </View>
   );
 };
@@ -70,12 +82,19 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   avatar: {
-    width: 100,
+    width: "33.33%",
     aspectRatio: 1,
     borderRadius: 50,
   },
+  userStats: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "66.66%",
+  },
   numberContainer: {
     alignItems: "center",
+    width: 75,
   },
   numberText: {
     fontSize: fonts.size.md,

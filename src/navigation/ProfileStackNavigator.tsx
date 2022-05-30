@@ -3,7 +3,7 @@ import ProfileScreen from "../screens/Profile.screen";
 // @ts-ignore
 import logo from "../../assets/logo.png";
 import EditProfileScreen from "../screens/EditProfile.screen";
-import { ProfileStackNavigatorParamList } from "../types/navigation";
+import { ProfileStackNavigatorParamList } from "./types";
 
 const Stack = createNativeStackNavigator<ProfileStackNavigatorParamList>();
 

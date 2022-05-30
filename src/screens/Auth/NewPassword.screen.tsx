@@ -3,10 +3,10 @@ import FormInput from "./components/FormInput";
 import CustomButton from "./components/CustomButton";
 import { useNavigation } from "@react-navigation/native";
 import { useForm } from "react-hook-form";
-import { NewPasswordNavigationProp } from "../../types/navigation";
+import { NewPasswordNavigationProp } from "../../navigation/types";
 import { Auth } from "aws-amplify";
 import { useState } from "react";
-import { EMAIL_REGEX } from "../../types/regExs";
+import { EMAIL_REGEX } from "../../util/regExs";
 
 type NewPasswordType = {
   email: string;

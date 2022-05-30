@@ -1,9 +1,10 @@
 import { StyleSheet, View, Text, Image, Pressable } from "react-native";
-import { IUser } from "../../types/models";
 import { useNavigation } from "@react-navigation/native";
+import { User } from "../../API";
+import { DEFAULT_USER_IMAGE } from "../../config";
 
 interface IUserListItem {
-  user: IUser;
+  user: User;
 }
 
 const UserListItem: React.FC<IUserListItem> = ({ user }) => {
@@ -15,7 +16,10 @@ const UserListItem: React.FC<IUserListItem> = ({ user }) => {
       onPress={() => navigation.navigate("UserProfile", { userId: user.id })}
       style={styles.container}
     >
-      <Image source={{ uri: user.image }} style={styles.avatar} />
+      <Image
+        source={{ uri: user.image ?? DEFAULT_USER_IMAGE }}
+        style={styles.avatar}
+      />
       <View>
         <Text style={styles.username}>{user.username}</Text>
         <Text style={styles.name}>{user.name}</Text>

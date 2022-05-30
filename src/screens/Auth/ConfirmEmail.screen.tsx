@@ -8,10 +8,10 @@ import { useForm } from "react-hook-form";
 import {
   ConfirmEmailNavigationProp,
   ConfirmEmailRouteProp,
-} from "../../types/navigation";
+} from "../../navigation/types";
 import { useRoute } from "@react-navigation/native";
 import { Auth } from "aws-amplify";
-import { EMAIL_REGEX } from "../../types/regExs";
+import { EMAIL_REGEX } from "../../util/regExs";
 
 type ConfirmEmailData = {
   email: string;

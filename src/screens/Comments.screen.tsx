@@ -6,7 +6,6 @@ import {
   StyleSheet,
   View,
 } from "react-native";
-import comments from "../../assets/data/comments.json";
 import Comment from "../components/comments/Comment";
 import CommentInput from "../components/comments/CommentInput";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -23,6 +22,7 @@ const CommentsScreen: React.FC<IComments> = ({}) => {
       >
         <FlatList
           style={{ padding: 10 }}
+          // @ts-ignore
           data={comments}
           renderItem={({ item }) => (
             <Comment displayedInCommentScreen comment={item} />

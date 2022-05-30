@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { AuthStackNavigatorParamList } from "../types/navigation";
+import { AuthStackNavigatorParamList } from "./types";
 import SignInScreen from "../screens/Auth/SignIn.screen";
 import SignUpScreen from "../screens/Auth/SignUp.screen";
 import ConfirmEmailScreen from "../screens/Auth/ConfirmEmail.screen";

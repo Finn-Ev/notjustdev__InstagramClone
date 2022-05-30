@@ -16,12 +16,12 @@ import CustomButton from "./components/CustomButton";
 import SocialSignInButtons from "./components/SocialSignInButtons";
 import { useNavigation } from "@react-navigation/native";
 import { set, useForm } from "react-hook-form";
-import { SignInNavigationProp } from "../../types/navigation";
+import { SignInNavigationProp } from "../../navigation/types";
 import { Auth, loadingLogo } from "aws-amplify";
 import { useRef, useState } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useAuthContext } from "../../context/AuthContext";
-import { EMAIL_REGEX } from "../../types/regExs";
+import { EMAIL_REGEX } from "../../util/regExs";
 
 type SignInData = {
   email: string;

@@ -4,11 +4,11 @@ import CustomButton from "./components/CustomButton";
 import SocialSignInButtons from "./components/SocialSignInButtons";
 import { useNavigation } from "@react-navigation/core";
 import { useForm } from "react-hook-form";
-import { SignUpNavigationProp } from "../../types/navigation";
+import { SignUpNavigationProp } from "../../navigation/types";
 import colors from "../../theme/colors";
 import { Auth } from "aws-amplify";
 import { useState } from "react";
-import { EMAIL_REGEX } from "../../types/regExs";
+import { EMAIL_REGEX } from "../../util/regExs";
 
 type SignUpData = {
   name: string;

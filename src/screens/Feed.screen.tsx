@@ -53,7 +53,6 @@ const FeedScreen: React.FC<IHomeScreen> = (props) => {
 
 export default FeedScreen;
 
-// GraphQL query
 const listPosts = gql`
   query ListPosts(
     $filter: ModelPostFilterInput

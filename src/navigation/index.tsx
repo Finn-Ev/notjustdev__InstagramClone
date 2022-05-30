@@ -6,7 +6,7 @@ import BottomTabNavigator from "./BottomTabNavigator";
 // @ts-ignore
 import logo from "../../assets/logo.png";
 import CommentsScreen from "../screens/Comments.screen";
-import { RootStackParamList } from "../types/navigation";
+import { RootStackParamList } from "./types";
 import * as Linking from "expo-linking";
 import AuthStackNavigator from "./AuthStackNavigator";
 import { useAuthContext } from "../context/AuthContext";

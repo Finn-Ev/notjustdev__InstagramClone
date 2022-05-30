@@ -5,17 +5,17 @@ import image from "../../../assets/error.png";
 import colors from "../../theme/colors";
 import Button from "./Button";
 
-interface ApiErrorMessageProps {
+interface IApiErrorMessageProps {
   title?: string;
   message?: string;
   onRetry?: () => void;
 }
 
-const ApiErrorMessage = ({
+const ApiErrorMessage: React.FC<IApiErrorMessageProps> = ({
   title = "Error",
   message = "Unknown Error",
   onRetry = () => {},
-}: ApiErrorMessageProps) => {
+}) => {
   return (
     <View style={styles.container}>
       <Image source={image} style={styles.image} resizeMode="contain" />

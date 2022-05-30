@@ -254,7 +254,7 @@
           },
           "authTriggerConnections": "{\"triggerType\":\"PostConfirmation\",\"lambdaFunctionName\":\"notJustPhotosPostConfirmation\"}",
           "permissions": "",
-          "hostedUIProviderCreds": "[]",
+          "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\"},{\"ProviderName\":\"Google\"}]",
           "facebookAppId": "1188023448674443",
           "googleClientId": "737664143014-hgm9b337jjbsv0mk1tk7kkvbspiu26jr.apps.googleusercontent.com",
           "env": "staging"
@@ -269,7 +269,7 @@
           "modules": "custom",
           "resourceName": "notJustPhotosPostConfirmation",
           "deploymentBucketName": "amplify-instagram-staging-113253-deployment",
-          "s3Key": "amplify-builds/notJustPhotosPostConfirmation-6a644163735342596244-build.zip",
+          "s3Key": "amplify-builds/notJustPhotosPostConfirmation-615731307048384a6358-build.zip",
           "apinotJustPhotosGraphQLAPIIdOutput": {
             "Fn::GetAtt": [
               "apinotJustPhotos",

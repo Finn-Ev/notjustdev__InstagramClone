@@ -6,14 +6,15 @@ import {
   StyleProp,
   ViewStyle,
   TextStyle,
-} from 'react-native';
-import colors from '../../theme/colors';
-import fonts from '../../theme/fonts';
+} from "react-native";
+import colors from "../../theme/colors";
+import fonts from "../../theme/fonts";
 
 interface IButton {
   onPress: () => void;
   style?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
+  inline?: boolean;
 }
 
 const Button: React.FC<IButton> = ({
@@ -21,14 +22,17 @@ const Button: React.FC<IButton> = ({
   onPress,
   style = {},
   textStyle = {},
+  inline = false,
 }) => {
   return (
-    <Pressable style={[styles.container, style]} onPress={onPress}>
+    <Pressable
+      style={[styles.container, style, inline && { flex: 1 }]}
+      onPress={onPress}
+    >
       <Text style={[styles.text, textStyle]}>{children}</Text>
     </Pressable>
   );
 };
-
 
 const styles = StyleSheet.create({
   container: {
@@ -36,9 +40,8 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     borderRadius: 5,
     padding: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
     margin: 5,
   },
   text: {

@@ -1,17 +1,19 @@
-import { useEffect, useRef, useState } from "react";
-import { FlatList, View, ViewToken } from "react-native";
-import { API, graphqlOperation } from "aws-amplify";
+import { useRef, useState } from "react";
+import { ActivityIndicator, FlatList, View, ViewToken } from "react-native";
 import FeedPost from "../components/feed/FeedPost";
-import { Post } from "../API";
+import { gql, useQuery } from "@apollo/client";
+import { ListPostsQuery, ListPostsQueryVariables, Post } from "../API";
+import ApiErrorMessage from "../components/shared/ApiErrorMessage";
 
 interface IHomeScreen {}
-{
-}
 
 const FeedScreen: React.FC<IHomeScreen> = (props) => {
   const [activePostId, setActivePostId] = useState<string | null>(null);
 
-  const [posts, setPosts] = useState<Post[]>([]);
+  const { data, loading, error } = useQuery<
+    ListPostsQuery,
+    ListPostsQueryVariables
+  >(listPosts, {});
 
   const onViewableItemsChanged = useRef(
     ({ viewableItems }: { viewableItems: ViewToken[] }) => {
@@ -20,21 +22,27 @@ const FeedScreen: React.FC<IHomeScreen> = (props) => {
       }
     }
   );
-  useEffect(() => {
-    (async () => {
-      const response = await API.graphql(graphqlOperation(listPosts));
-      // @ts-ignore
-      setPosts(response.data.listPosts.items);
-    })();
-  }, []);
+
+  if (loading) return <ActivityIndicator />;
+  if (error)
+    return (
+      <ApiErrorMessage title={"Error fetching posts"} message={error.message} />
+    );
+
+  const posts = data?.listPosts?.items || [];
 
   return (
     <View>
       <FlatList
         data={posts}
-        renderItem={({ item }) => (
-          <FeedPost isVisible={activePostId === item.id} post={item} />
-        )}
+        renderItem={({ item }) =>
+          item && (
+            <FeedPost
+              isVisible={activePostId === item.id}
+              post={item as Post}
+            />
+          )
+        }
         showsVerticalScrollIndicator={false}
         viewabilityConfig={{ itemVisiblePercentThreshold: 66 }}
         onViewableItemsChanged={onViewableItemsChanged.current}
@@ -45,7 +53,8 @@ const FeedScreen: React.FC<IHomeScreen> = (props) => {
 
 export default FeedScreen;
 
-const listPosts = /* GraphQL */ `
+// GraphQL query
+const listPosts = gql`
   query ListPosts(
     $filter: ModelPostFilterInput
     $limit: Int

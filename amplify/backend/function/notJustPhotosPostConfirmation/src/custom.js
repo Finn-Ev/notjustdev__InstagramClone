@@ -19,27 +19,34 @@ const checkIfUserExists = (id) => {
     const response = documentClient.get(params).promise();
     return !!response?.Item;
   } catch (e) {
+    console.log(e);
     return false;
   }
 };
 
-const saveUser = (user) => {
+const saveUser = async (user) => {
+  const date = new Date();
+  const dateStr = date.toISOString();
+  const timestamp = date.getTime();
   const params = {
     TableName,
     Item: {
       ...user,
-      createdAt: Date.toISOString(),
-      updatedAt: Date.toISOString(),
-      _lastChangedAt: Date.now(),
+      createdAt: dateStr,
+      updatedAt: dateStr,
+      _lastChangedAt: timestamp,
       _version: 1,
       __typename: "User",
     },
   };
-
-  return documentClient.put(params).promise();
+  try {
+    await documentClient.put(params).promise();
+  } catch (e) {
+    console.log(e);
+  }
 };
 
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
   if (!event.request?.userAttributes) {
     console.log("no user attributes");
     return;
@@ -52,8 +59,11 @@ exports.handler = async (event, context) => {
     email,
   };
 
-  if (!checkIfUserExists(newUser.id)) {
+  if (!(await checkIfUserExists(newUser.id))) {
     await saveUser(newUser);
+    console.log(`User ${newUser.id} has been saved to the DB`);
+  } else {
+    console.log(`User ${newUser.id} already exists`);
   }
 
   return event;

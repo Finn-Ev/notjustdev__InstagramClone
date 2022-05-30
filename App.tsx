@@ -6,6 +6,8 @@ import AuthContextProvider from "./src/context/AuthContext";
 import React from "react";
 import { Linking, Platform } from "react-native";
 import * as WebBrowser from "expo-web-browser";
+import ApolloClient from "./src/apollo/Client";
+import Client from "./src/apollo/Client";
 
 Amplify.configure(awsconfig);
 
@@ -40,7 +42,9 @@ const App: React.FC = ({}) => {
   return (
     <SafeAreaProvider>
       <AuthContextProvider>
-        <Navigation />
+        <Client>
+          <Navigation />
+        </Client>
       </AuthContextProvider>
     </SafeAreaProvider>
   );

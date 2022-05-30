@@ -66,7 +66,7 @@
         "GoogleWebClient": "737664143014-hgm9b337jjbsv0mk1tk7kkvbspiu26jr.apps.googleusercontent.com",
         "FacebookWebClient": "1188023448674443"
       },
-      "lastPushTimeStamp": "2022-05-28T15:10:27.338Z",
+      "lastPushTimeStamp": "2022-05-30T13:38:17.018Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-instagram-staging-113253-deployment/amplify-cfn-templates/auth/notJustPhotos-cloudformation-template.json",
         "logicalId": "authnotJustPhotos"
@@ -85,20 +85,20 @@
         "Name": "notJustPhotosPostConfirmation-staging",
         "LambdaExecutionRole": "notJustPhotosPostConfirmation-staging"
       },
-      "lastPushTimeStamp": "2022-05-28T15:10:27.299Z",
+      "lastPushTimeStamp": "2022-05-30T13:38:17.187Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-instagram-staging-113253-deployment/amplify-cfn-templates/function/notJustPhotosPostConfirmation-cloudformation-template.json",
         "logicalId": "functionnotJustPhotosPostConfirmation"
       },
       "s3Bucket": {
         "deploymentBucketName": "amplify-instagram-staging-113253-deployment",
-        "s3Key": "amplify-builds/notJustPhotosPostConfirmation-6a644163735342596244-build.zip"
+        "s3Key": "amplify-builds/notJustPhotosPostConfirmation-615731307048384a6358-build.zip"
       },
-      "lastBuildTimeStamp": "2022-05-28T15:10:24.995Z",
+      "lastBuildTimeStamp": "2022-05-30T13:36:12.850Z",
       "lastBuildType": "PROD",
-      "lastPackageTimeStamp": "2022-05-28T15:10:25.189Z",
-      "distZipFilename": "notJustPhotosPostConfirmation-6a644163735342596244-build.zip",
-      "lastPushDirHash": "ZkKKdJOXqRrALu6WDamMhfx4+C0=",
+      "lastPackageTimeStamp": "2022-05-30T13:36:13.059Z",
+      "distZipFilename": "notJustPhotosPostConfirmation-615731307048384a6358-build.zip",
+      "lastPushDirHash": "UBCNT8G+WixLn/YetonFlt5yfxQ=",
       "dependsOn": [
         {
           "category": "api",
@@ -140,7 +140,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-instagram-staging-113253-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apinotJustPhotos"
       },
-      "lastPushTimeStamp": "2022-05-28T15:10:27.309Z",
+      "lastPushTimeStamp": "2022-05-30T13:38:17.020Z",
       "lastPushDirHash": "AemBhbQyuf0GuUazO921TZi9gf0="
     }
   }

@@ -43,10 +43,12 @@ const ProfileHeader: React.FC<IProfileHeader> = ({}) => {
 
       {/* Buttons */}
       <View style={styles.buttonContainer}>
-        <Button onPress={() => navigation.navigate("EditProfile")}>
+        <Button inline onPress={() => navigation.navigate("EditProfile")}>
           Edit Profile
         </Button>
-        <Button onPress={() => Auth.signOut()}>Sign out</Button>
+        <Button inline onPress={() => Auth.signOut()}>
+          Sign out
+        </Button>
       </View>
     </View>
   );

@@ -32,6 +32,7 @@ const ConfirmEmailScreen = () => {
     try {
       const res = await Auth.confirmSignUp(data.email, data.code);
       // @ts-ignore
+      alert("Successfully confirmed email");
       navigation.navigate("Sign in");
     } catch (e) {
       Alert.alert("Something went wrong", e.message);

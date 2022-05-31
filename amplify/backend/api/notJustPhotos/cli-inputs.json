@@ -14,6 +14,36 @@
         "mode": "AWS_IAM"
       }
     ],
-    "conflictResolution": {}
+    "conflictResolution": {
+      "defaultResolutionStrategy": {
+        "type": "AUTOMERGE"
+      },
+      "perModelResolutionStrategy": [
+        {
+          "resolutionStrategy": {
+            "type": "AUTOMERGE"
+          },
+          "entityName": "Like"
+        },
+        {
+          "resolutionStrategy": {
+            "type": "AUTOMERGE"
+          },
+          "entityName": "Comment"
+        },
+        {
+          "resolutionStrategy": {
+            "type": "AUTOMERGE"
+          },
+          "entityName": "Post"
+        },
+        {
+          "resolutionStrategy": {
+            "type": "AUTOMERGE"
+          },
+          "entityName": "User"
+        }
+      ]
+    }
   }
 }

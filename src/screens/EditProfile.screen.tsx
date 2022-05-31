@@ -110,9 +110,8 @@ const EditProfileScreen: React.FC<IEditProfile> = ({}) => {
                 },
               },
             });
-            await authUser?.deleteUser((err) => {
-              if (err) console.log(err);
-            });
+            // delete user from cognito
+            await Auth.deleteUser();
             await Auth.signOut();
           },
         },

@@ -307,7 +307,7 @@
             "Ref": "UnauthRoleName"
           },
           "S3DeploymentBucket": "amplify-instagram-staging-113253-deployment",
-          "S3DeploymentRootKey": "amplify-appsync-files/15cf7717aff86642303c42cc78b77fa42ae67089",
+          "S3DeploymentRootKey": "amplify-appsync-files/c7cf1b313663d10b1c286be1f06497002065d24e",
           "env": "staging"
         }
       }

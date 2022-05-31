@@ -269,7 +269,7 @@
           "modules": "custom",
           "resourceName": "notJustPhotosPostConfirmation",
           "deploymentBucketName": "amplify-instagram-staging-113253-deployment",
-          "s3Key": "amplify-builds/notJustPhotosPostConfirmation-473834724b31654f5259-build.zip",
+          "s3Key": "amplify-builds/notJustPhotosPostConfirmation-63745678683473704b39-build.zip",
           "apinotJustPhotosGraphQLAPIIdOutput": {
             "Fn::GetAtt": [
               "apinotJustPhotos",
@@ -307,7 +307,7 @@
             "Ref": "UnauthRoleName"
           },
           "S3DeploymentBucket": "amplify-instagram-staging-113253-deployment",
-          "S3DeploymentRootKey": "amplify-appsync-files/557c0f1c2bac5f3415c0e3ef8fafa0a6da24a0f2",
+          "S3DeploymentRootKey": "amplify-appsync-files/15cf7717aff86642303c42cc78b77fa42ae67089",
           "env": "staging"
         }
       }

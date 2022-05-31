@@ -3,7 +3,7 @@
   "serviceConfiguration": {
     "apiName": "notJustPhotos",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "/tmp/amplify-a6b9f50d-b745-435c-b9ac-bcd893f3caa6/amplify/backend/api/notJustPhotos/schema.graphql",
+    "gqlSchemaPath": "/Users/finnevermann/projects/InstagramClone/amplify/backend/api/notJustPhotos/schema.graphql",
     "defaultAuthType": {
       "mode": "API_KEY",
       "keyDescription": "api key description",
@@ -14,10 +14,6 @@
         "mode": "AWS_IAM"
       }
     ],
-    "conflictResolution": {
-      "defaultResolutionStrategy": {
-        "type": "AUTOMERGE"
-      }
-    }
+    "conflictResolution": {}
   }
 }

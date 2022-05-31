@@ -54,7 +54,12 @@ const ProfileHeader: React.FC<IProfileHeader> = ({ user }) => {
       {/* Buttons */}
       {authUserId === user.id && (
         <View style={styles.buttonContainer}>
-          <Button inline onPress={() => navigation.navigate("EditProfile")}>
+          <Button
+            inline
+            onPress={() =>
+              navigation.navigate("EditProfile", { userId: authUserId })
+            }
+          >
             Edit Profile
           </Button>
           <Button inline onPress={() => Auth.signOut()}>

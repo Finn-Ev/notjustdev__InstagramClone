@@ -9,6 +9,7 @@ import {
 import Comment from "../components/comments/Comment";
 import CommentInput from "../components/comments/CommentInput";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Comment as IComment } from "../API";
 
 interface IComments {}
 
@@ -20,14 +21,13 @@ const CommentsScreen: React.FC<IComments> = ({}) => {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={{ flex: 1 }}
       >
-        <FlatList
-          style={{ padding: 10 }}
-          // @ts-ignore
-          data={comments}
-          renderItem={({ item }) => (
-            <Comment displayedInCommentScreen comment={item} />
-          )}
-        />
+        {/*<FlatList*/}
+        {/*  style={{ padding: 10 }}*/}
+        {/*  data={comments}*/}
+        {/*  renderItem={({ item }) => (*/}
+        {/*    <Comment displayedInCommentScreen comment={item} />*/}
+        {/*  )}*/}
+        {/*/>*/}
         <CommentInput />
         <View style={{ flex: 1 }}></View>
       </KeyboardAvoidingView>

@@ -22,7 +22,7 @@ const Comment: React.FC<CommentProps> = ({
     <View style={styles.comment}>
       {displayedInCommentScreen && (
         <Image
-          source={{ uri: comment.User.image || DEFAULT_USER_IMAGE }}
+          source={{ uri: comment?.User?.image || DEFAULT_USER_IMAGE }}
           style={styles.avatar}
         />
       )}

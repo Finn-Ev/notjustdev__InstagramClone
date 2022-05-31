@@ -10,6 +10,7 @@ import { RootStackParamList } from "./types";
 import * as Linking from "expo-linking";
 import AuthStackNavigator from "./AuthStackNavigator";
 import { useAuthContext } from "../context/AuthContext";
+import LoadingIndicator from "../components/shared/LoadingIndicator";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -50,7 +51,7 @@ const Navigation: React.FC = ({}) => {
   }
 
   return (
-    <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
+    <NavigationContainer linking={linking} fallback={<LoadingIndicator />}>
       <Stack.Navigator screenOptions={{}}>
         {user ? (
           <>

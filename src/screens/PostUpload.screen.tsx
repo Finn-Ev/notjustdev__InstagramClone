@@ -5,6 +5,7 @@ import {
   Pressable,
   useWindowDimensions,
   SafeAreaView,
+  ActivityIndicator,
 } from "react-native";
 import { Camera } from "expo-camera";
 import { useEffect, useRef, useState } from "react";
@@ -89,7 +90,7 @@ const PostUploadScreen: React.FC<IPostUploadScreen> = ({}) => {
   };
 
   if (hasPermission === null) {
-    return <Text>Loading...</Text>;
+    return <ActivityIndicator />;
   }
   if (!hasPermission) {
     return <Text>No access to camera</Text>;

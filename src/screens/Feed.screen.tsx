@@ -4,6 +4,7 @@ import FeedPost from "../components/feed/FeedPost";
 import { gql, useQuery } from "@apollo/client";
 import { ListPostsQuery, ListPostsQueryVariables, Post } from "../API";
 import ApiErrorMessage from "../components/shared/ApiErrorMessage";
+import LoadingIndicator from "../components/shared/LoadingIndicator";
 
 interface IHomeScreen {}
 
@@ -23,7 +24,7 @@ const FeedScreen: React.FC<IHomeScreen> = (props) => {
     }
   );
 
-  if (loading) return <ActivityIndicator />;
+  if (loading) return <LoadingIndicator />;
   if (error)
     return (
       <ApiErrorMessage title={"Error fetching posts"} message={error.message} />

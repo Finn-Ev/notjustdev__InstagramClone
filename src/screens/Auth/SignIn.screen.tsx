@@ -22,6 +22,7 @@ import { useRef, useState } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useAuthContext } from "../../context/AuthContext";
 import { EMAIL_REGEX } from "../../util/regExs";
+import LoadingIndicator from "../../components/shared/LoadingIndicator";
 
 type SignInData = {
   email: string;
@@ -70,6 +71,8 @@ const SignInScreen = () => {
   const onSignUpPressed = () => {
     navigation.navigate("Sign up");
   };
+
+  if (isLoading) return <LoadingIndicator />;
 
   return (
     <KeyboardAwareScrollView>
@@ -128,7 +131,7 @@ const SignInScreen = () => {
         />
 
         <CustomButton
-          text={isLoading ? "Loading..." : "Sign in"}
+          text={"Sign in"}
           onPress={handleSubmit(onSignInPressed)}
         />
 
